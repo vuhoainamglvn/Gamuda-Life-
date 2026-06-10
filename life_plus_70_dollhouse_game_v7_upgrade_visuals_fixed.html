@@ -1,0 +1,1279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<title>Life+ 70+ Dollhouse Home</title>
+<style>
+  :root{
+    --ink:#243047;
+    --muted:#6b7280;
+    --cream:#fff7e8;
+    --paper:#fffdf8;
+    --brand:#e47752;
+    --brand2:#66b7a7;
+    --brand3:#f3c05a;
+    --blue:#6aa8e8;
+    --green:#8ccf7f;
+    --violet:#9c82db;
+    --shadow:0 14px 34px rgba(42,38,57,.18);
+    --line:rgba(36,48,71,.14);
+  }
+  *{box-sizing:border-box; -webkit-tap-highlight-color: transparent;}
+  html,body{height:100%; margin:0; font-family:Inter, ui-rounded, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; color:var(--ink); background:linear-gradient(180deg,#ccebf6 0%,#f8efd8 68%,#f5ddba 100%); overflow:hidden;}
+  button,input,select{font:inherit;}
+  button{border:0; cursor:pointer; color:var(--ink);}
+  .app{height:100%; display:flex; flex-direction:column;}
+  .topbar{height:76px; display:flex; align-items:center; justify-content:space-between; padding:10px 16px; gap:12px; background:rgba(255,253,248,.92); border-bottom:1px solid rgba(36,48,71,.1); backdrop-filter:blur(10px); z-index:20;}
+  .brand{display:flex; align-items:center; gap:12px; min-width:0;}
+  .logo{width:54px;height:54px; border-radius:18px; background:radial-gradient(circle at 30% 26%,#fff8c7 0 17%,transparent 18%),linear-gradient(135deg,#79d1bd,#f5c366 48%,#e47752); display:grid; place-items:center; box-shadow:0 8px 22px rgba(228,119,82,.28); font-size:27px;}
+  .brand h1{font-size:19px; margin:0; letter-spacing:-.02em; white-space:nowrap;}
+  .brand p{font-size:12px;margin:3px 0 0;color:var(--muted); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:540px;}
+  .toolbar{display:flex; align-items:center; gap:8px; flex-wrap:wrap; justify-content:flex-end;}
+  .pill{border-radius:999px; background:#fff; border:1px solid var(--line); padding:9px 12px; box-shadow:0 4px 12px rgba(36,48,71,.06); font-weight:750; font-size:13px;}
+  .pill.primary{background:#26364f; color:white;}
+  .pill.warning{background:#fff0d5; color:#765121;}
+  .pill.good{background:#ddf7ee; color:#12624f;}
+  .pill:disabled{opacity:.45; cursor:not-allowed;}
+  .main{flex:1; min-height:0; display:grid; grid-template-columns:minmax(0,1fr) 294px; gap:12px; padding:12px;}
+  .stageWrap{position:relative; min-width:0; border-radius:28px; background:rgba(255,255,255,.55); box-shadow:var(--shadow); overflow:hidden; border:1px solid rgba(255,255,255,.75);}
+  .skyDecor{position:absolute; inset:0; pointer-events:none; opacity:.85;}
+  .cloud{position:absolute; width:100px;height:36px;background:#fff;border-radius:999px; box-shadow:38px -10px 0 8px #fff,73px 0 0 0 #fff; opacity:.76;}
+  .cloud.c1{left:5%;top:8%;}.cloud.c2{right:11%;top:13%; transform:scale(.8)}.cloud.c3{left:48%;top:6%; transform:scale(.65)}
+
+  .skySun{position:absolute; right:7%; top:8%; width:66px; height:66px; border-radius:50%; background:radial-gradient(circle at 35% 35%,#fff8bb 0 18%,#ffd75c 19% 72%,#f4b940 73%); box-shadow:0 0 0 12px rgba(255,215,92,.16),0 0 36px rgba(255,215,92,.42);} 
+  .bird{position:absolute; width:28px; height:14px; border-top:4px solid rgba(71,91,120,.7); border-radius:50%;}
+  .bird:after{content:""; position:absolute; left:12px; top:-4px; width:28px; height:14px; border-top:4px solid rgba(71,91,120,.7); border-radius:50%;}
+  .bird.b1{left:17%; top:12%; animation:fly 12s linear infinite;}
+  .bird.b2{left:38%; top:18%; transform:scale(.8); animation:fly 16s linear infinite reverse;}
+  .bird.b3{left:68%; top:15%; transform:scale(.65); animation:fly 14s linear infinite;}
+  .outsideTree{position:absolute; bottom:54px; width:84px; height:118px; z-index:1;}
+  .outsideTree .trunk{position:absolute; left:33px; bottom:0; width:16px; height:42px; border-radius:8px; background:linear-gradient(180deg,#af7a4c,#835531);} 
+  .outsideTree .leaf{position:absolute; border-radius:50%; background:linear-gradient(180deg,#99d87d,#5eb35f); box-shadow:inset 0 -8px 0 rgba(0,0,0,.08);} 
+  .outsideTree.t1{left:90px;} .outsideTree.t2{left:1185px; transform:scale(1.06);} .outsideTree.t3{left:1280px; transform:scale(.82);} 
+  .outsideTree .leaf.l1{left:12px; bottom:32px; width:34px; height:34px;} .outsideTree .leaf.l2{left:26px; bottom:50px; width:40px; height:40px;} .outsideTree .leaf.l3{left:42px; bottom:28px; width:28px; height:28px;} 
+  .outsideShrub{position:absolute; bottom:42px; width:54px; height:28px; border-radius:20px; background:linear-gradient(180deg,#98d67e,#69bb6d); opacity:.92;} .outsideShrub.s1{left:34px;} .outsideShrub.s2{left:1120px;} .outsideShrub.s3{left:1240px; width:68px;}
+  .npcLayer{position:absolute; left:0; right:0; top:0; bottom:0; z-index:3; pointer-events:none;}
+  .npcWalker{position:absolute; width:38px; height:72px; bottom:auto; top:252px; transform:translateX(0); filter:drop-shadow(0 7px 5px rgba(34,42,50,.14)); pointer-events:none; opacity:.92;}
+  .npcWalker .nhead{position:absolute; left:8px; top:0; width:23px; height:23px; border-radius:50%; background:#ffd2a8;}
+  .npcWalker .nhair{position:absolute; left:8px; top:-2px; width:23px; height:10px; background:#554035; border-radius:12px 12px 5px 5px;}
+  .npcWalker .nbody{position:absolute; left:5px; top:22px; width:28px; height:28px; border-radius:12px 12px 8px 8px; background:var(--shirt,#77b3e5);} 
+  .npcWalker .nleg{position:absolute; top:47px; width:9px; height:20px; border-radius:6px; background:#364056; animation:npcWalk .55s infinite alternate;} .npcWalker .nleg.l{left:9px;} .npcWalker .nleg.r{right:8px; animation-delay:.28s;} 
+  .npcBubble{position:absolute; bottom:76px; left:50%; transform:translateX(-50%); background:rgba(255,253,248,.94); border:1px solid rgba(36,48,71,.14); border-radius:999px; font-size:11px; font-weight:850; color:#38475f; padding:5px 9px; white-space:nowrap; display:none;} .npcWalker.near .npcBubble{display:block;}
+  .kitGrid{display:grid; grid-template-columns:repeat(auto-fit,minmax(118px,1fr)); gap:8px;}
+  .kitItem{padding:8px; border-radius:18px; background:#f8fafc; border:1px solid rgba(36,48,71,.1); display:block; text-align:left; font-size:11px; font-weight:850; min-height:124px;}
+  .kitItem .miniTag{display:inline-block; margin-top:4px;} .kitItem.selected{outline:3px solid rgba(228,119,82,.35); background:#fff3e8;} .kitItem.installed{opacity:.62; text-decoration:none;}
+  .kitVisual,.shopVisual{height:68px; border-radius:16px; position:relative; overflow:hidden; margin-bottom:8px; background:linear-gradient(135deg,#f9efe0,#ffffff); border:1px solid rgba(36,48,71,.08); box-shadow:inset 0 1px 0 rgba(255,255,255,.7);} 
+  .shopVisual{height:78px; margin-bottom:10px;} .thumbIcon{position:absolute; right:10px; bottom:6px; font-size:30px; filter:drop-shadow(0 4px 4px rgba(0,0,0,.08));}
+  .thumbLabel{position:absolute; left:10px; top:9px; font-size:10px; font-weight:950; padding:3px 7px; border-radius:999px; background:rgba(255,255,255,.78); border:1px solid rgba(36,48,71,.08); color:#55657d; text-transform:uppercase;}
+  .thumbScene{position:absolute; left:10px; right:56px; bottom:10px; height:32px; border-radius:12px; background:rgba(255,255,255,.62);} 
+  .thumbScene:before,.thumbScene:after{content:""; position:absolute; bottom:0;}
+  .thumbScene.entrance:before{left:6px; width:18px; height:24px; border-radius:8px 8px 3px 3px; background:#ca8b5e;} .thumbScene.entrance:after{left:28px; width:30px; height:8px; border-radius:999px; background:#d2b89a;}
+  .thumbScene.stairs:before{left:5px; width:42px; height:24px; background:linear-gradient(180deg,transparent 0 4px,#b68d64 4px 8px,transparent 8px 12px,#b68d64 12px 16px,transparent 16px 20px,#b68d64 20px 24px);} .thumbScene.stairs:after{right:0; width:18px; height:28px; border-radius:4px; background:#d8e1e6;}
+  .thumbScene.kitchen:before{left:0; right:0; height:18px; border-radius:10px 10px 5px 5px; background:repeating-linear-gradient(90deg,#f0cf85 0 10px,#e1b86b 10px 20px);} .thumbScene.kitchen:after{right:8px; width:13px; height:26px; border-radius:5px; background:#d7edf4;}
+  .thumbScene.bathroom:before{left:0; width:26px; height:30px; border-radius:8px; background:#d7edf6; border:2px solid #a6cde1;} .thumbScene.bathroom:after{right:0; width:22px; height:22px; border-radius:11px 11px 8px 8px; background:#e9eff4;}
+  .thumbScene.living:before{left:2px; width:38px; height:20px; border-radius:12px 12px 5px 5px; background:#e88c72; box-shadow:0 7px 0 #b25d5a;} .thumbScene.living:after{right:6px; width:22px; height:14px; border-radius:50%; background:#c58f62; bottom:4px;}
+  .thumbScene.bedroom:before{left:2px; width:44px; height:21px; border-radius:12px 12px 4px 4px; background:#9c85d7; box-shadow:0 7px 0 #7261af;} .thumbScene.bedroom:after{right:8px; width:10px; height:20px; border-left:3px solid #9a714e;}
+  .thumbScene.care:before{left:0; width:28px; height:18px; border-radius:8px; background:#e8c06d;} .thumbScene.care:after{right:3px; width:24px; height:24px; border-radius:6px; background:#fff9e6; border:2px solid #efc35a;}
+  .thumbScene.balcony:before{left:0; width:48px; height:8px; border-radius:999px; background:#9faea9;} .thumbScene.balcony:after{right:2px; width:26px; height:24px; border-radius:50%; background:#74c46d; box-shadow:-14px 4px 0 -4px #5fae65;}
+  .kitName{display:block; line-height:1.2;} .kitSub{display:block; font-size:10px; color:#667287; font-weight:700; margin-top:3px;}
+  .sceneWarm{background:linear-gradient(135deg,#fff0d8,#ffffff);} .sceneCool{background:linear-gradient(135deg,#e6f6ff,#ffffff);} .sceneGreen{background:linear-gradient(135deg,#e8f9ee,#ffffff);} .sceneViolet{background:linear-gradient(135deg,#f4ebff,#ffffff);} 
+  .entryBench,.umbrellaStand,.sidePlant,.cushion,.bookStack,.remote,.rangeHood,.kettle,.plateRack,.vanityMirror,.showerHead,.tpHolder,.bathShelf,.pillows,.blanketFold,.wallFrame,.careChair,.readingLamp,.firstAidBox,.balconyStool,.hangingPot,.birdHouse{position:absolute;}
+  .entryBench{left:14px; bottom:34px; width:42px; height:18px; border-radius:8px; background:#d5b086; box-shadow:0 5px 0 #a9794f;} .entryBench:before{content:""; position:absolute; left:6px; top:-12px; width:12px; height:12px; border-radius:50%; background:#f4efe9; box-shadow:15px 0 0 #f4efe9;}
+  .umbrellaStand{left:111px; bottom:32px; width:18px; height:42px; border-radius:6px; background:#b88c67;} .umbrellaStand:before{content:""; position:absolute; left:4px; top:-20px; width:3px; height:24px; background:#7d5a40; box-shadow:6px -2px 0 #6aa8e8;} 
+  .sidePlant{left:90px; bottom:30px; width:20px; height:34px; border-radius:6px; background:#bc8a5a;} .sidePlant:before{content:""; position:absolute; left:-7px; top:-18px; width:16px; height:16px; border-radius:50%; background:#7ec96d; box-shadow:10px 3px 0 #65b45f, 6px -8px 0 #8dd47a;}
+  .cushion{width:22px;height:16px;border-radius:10px;background:#ffd6b8; top:14px;} .cushion.c1{left:10px;} .cushion.c2{left:79px; background:#f2b39c;} .bookStack{left:150px; bottom:40px; width:40px; height:10px; background:#e7d4a4; border-radius:5px; box-shadow:0 -8px 0 #9cc6d9, 0 -16px 0 #f3c05a;} .remote{left:170px; bottom:82px; width:18px; height:6px; border-radius:999px; background:#445167; transform:rotate(-15deg);} 
+  .rangeHood{left:28px; top:68px; width:58px; height:14px; border-radius:8px; background:#9bb8c0;} .rangeHood:after{content:""; position:absolute; left:16px; top:14px; width:26px; height:14px; background:#b7d0d6;}
+  .kettle{left:84px; bottom:90px; width:18px; height:14px; border-radius:0 0 8px 8px; background:#e47752;} .kettle:before{content:""; position:absolute; right:-4px; top:3px; width:8px; height:7px; border:2px solid #e47752; border-left:0; border-radius:0 6px 6px 0;}
+  .plateRack{left:106px; top:61px; width:52px; height:16px; border-bottom:4px solid #95b9c4;} .plateRack:before{content:""; position:absolute; left:4px; top:2px; width:10px; height:10px; border-radius:50%; background:#fff; box-shadow:14px 0 0 #fff, 28px 0 0 #fff;}
+  .vanityMirror{left:96px; top:54px; width:50px; height:34px; border-radius:10px; background:linear-gradient(135deg,#dff6ff,#f8fdff); border:4px solid #a8ccd9;} .showerHead{left:18px; top:56px; width:18px; height:18px; border-top:4px solid #89b5c7; border-right:4px solid #89b5c7; border-radius:0 12px 0 0;} .showerHead:after{content:""; position:absolute; left:12px; top:10px; width:18px; height:14px; border-top:3px dotted #99c7dd; transform:rotate(25deg);} 
+  .tpHolder{left:148px; bottom:72px; width:18px; height:10px; border-top:4px solid #9bb8c0;} .tpHolder:after{content:""; position:absolute; left:0; top:4px; width:12px; height:12px; border-radius:50%; background:#fff;} .bathShelf{left:35px; top:98px; width:36px; height:8px; background:#84b5c7; border-radius:6px;} .bathShelf:before{content:""; position:absolute; left:3px; top:-14px; width:7px; height:14px; border-radius:4px; background:#f3c05a; box-shadow:10px 2px 0 #66b7a7, 20px -1px 0 #e47752;}
+  .pillows{left:10px; top:12px; width:32px; height:18px; border-radius:10px; background:#fff5de; box-shadow:38px 0 0 #f9ebd6;} .blanketFold{left:12px; bottom:12px; width:54px; height:12px; border-radius:8px; background:rgba(255,255,255,.18);} .wallFrame{left:220px; top:50px; width:42px; height:34px; border:4px solid #f2c16d; border-radius:6px; background:linear-gradient(180deg,#f8fff0,#d8efdb);} 
+  .careChair{left:110px; bottom:46px; width:26px; height:28px; border-radius:10px 10px 6px 6px; background:#d9c3a4; box-shadow:0 6px 0 #ac8763;} .readingLamp{left:168px; bottom:90px; width:8px; height:38px; background:#8e6a4a;} .readingLamp:before{content:""; position:absolute; left:-10px; top:-12px; width:26px; height:16px; border-radius:14px 14px 4px 4px; background:#ffe9a0; box-shadow:0 0 12px rgba(255,231,160,.55);} .firstAidBox{left:198px; bottom:84px; width:32px; height:24px; border-radius:6px; background:#fefefe; border:3px solid #e47752;} .firstAidBox:before{content:"+"; position:absolute; inset:0; display:grid; place-items:center; font-weight:950; color:#e47752;}
+  .balconyStool{left:112px; bottom:46px; width:28px; height:24px; border-radius:6px; background:#d3b085; box-shadow:0 6px 0 #a6774d;} .hangingPot{left:154px; top:36px; width:22px; height:20px; border-radius:0 0 11px 11px; background:#d39d64;} .hangingPot:before{content:""; position:absolute; left:5px; top:-20px; width:12px; height:20px; border-left:2px solid #7b898f; border-right:2px solid #7b898f;} .hangingPot:after{content:""; position:absolute; left:3px; top:-8px; width:16px; height:12px; border-radius:50%; background:#65b85f;} .birdHouse{left:30px; top:88px; width:22px; height:20px; background:#d6b07b; border-radius:4px;} .birdHouse:before{content:""; position:absolute; left:-3px; right:-3px; top:-8px; height:10px; background:#bd8756; clip-path:polygon(0 100%,50% 0,100% 100%);} .birdHouse:after{content:""; position:absolute; left:8px; top:8px; width:6px; height:6px; border-radius:50%; background:#6c4c2d;}
+  .mirror,.coatRack,.shoeCabinet,.tv,.cabinet,.careDesk,.careCabinet,.counter,.drawers,.fridge,.sink,.toilet,.careCalendar,.wateringCan{filter:drop-shadow(0 4px 3px rgba(0,0,0,.06));}
+
+  .cityBackdrop{position:absolute; left:0; right:0; bottom:170px; height:200px; z-index:0; pointer-events:none;}
+  .cityBackdrop .skyline{position:absolute; left:0; right:0; bottom:0; height:150px; opacity:.72;}
+  .cityBackdrop .bld{position:absolute; bottom:0; background:linear-gradient(180deg,#dce4ef,#becad8); border:3px solid rgba(88,104,124,.25); border-bottom:0; box-shadow:inset 0 -8px 0 rgba(255,255,255,.24);} 
+  .cityBackdrop .bld:before{content:""; position:absolute; inset:10px 8px 6px 8px; background:repeating-linear-gradient(90deg,rgba(255,255,255,.65) 0 8px, transparent 8px 14px), repeating-linear-gradient(180deg,rgba(136,160,187,.45) 0 8px, transparent 8px 18px);} 
+  .cityBackdrop .b1{left:20px; width:78px; height:118px;} .cityBackdrop .b2{left:92px; width:56px; height:78px;} .cityBackdrop .b3{left:156px; width:112px; height:144px;} .cityBackdrop .b4{left:264px; width:64px; height:92px;} .cityBackdrop .b5{left:332px; width:88px; height:132px;} .cityBackdrop .b6{left:1030px; width:94px; height:122px;} .cityBackdrop .b7{left:1118px; width:68px; height:92px;} .cityBackdrop .b8{left:1180px; width:118px; height:150px;} .cityBackdrop .b9{left:1294px; width:60px; height:98px;}
+  .hillBack{position:absolute; left:0; right:0; bottom:165px; height:72px; z-index:0; background:radial-gradient(ellipse at 20% 100%, rgba(126,189,120,.65) 0 18%, transparent 19%), radial-gradient(ellipse at 70% 100%, rgba(126,189,120,.55) 0 18%, transparent 19%), linear-gradient(180deg,rgba(173,213,145,.05),rgba(140,199,125,.28));}
+  .backLane{position:absolute; left:110px; right:110px; top:294px; height:22px; z-index:2; border-radius:999px; background:linear-gradient(180deg,#d7dce2,#c2cad2); box-shadow:0 3px 0 rgba(110,128,147,.18), inset 0 8px 0 rgba(255,255,255,.28);} 
+  .backLane:before{content:""; position:absolute; left:26px; right:26px; top:9px; height:3px; background:repeating-linear-gradient(90deg,#ffffff 0 24px, transparent 24px 46px); opacity:.72;}
+
+  
+  .windowCurtain{position:absolute; width:82px; height:84px; pointer-events:none;}
+  .windowCurtain:before,.windowCurtain:after{content:""; position:absolute; top:0; width:20px; height:84px; background:linear-gradient(180deg,#d98e78,#c26f59); opacity:.85; border-radius:0 0 10px 10px;}
+  .windowCurtain:before{left:-8px;} .windowCurtain:after{right:-8px;}
+  .windowCurtain div{display:none;}
+  .fruitBowl{position:absolute; left:112px; bottom:90px; width:26px; height:10px; border-radius:0 0 12px 12px; background:#c6925e;} .fruitBowl:before{content:""; position:absolute; left:2px; top:-8px; width:8px; height:8px; border-radius:50%; background:#f3c05a; box-shadow:8px 2px 0 #e47752, 15px 0 0 #7dc86d;}
+  .noticeBoard{position:absolute; left:154px; top:76px; width:42px; height:34px; background:#fff3d8; border:4px solid #cfa56f; border-radius:6px;} .noticeBoard:before{content:""; position:absolute; left:6px; top:8px; width:8px; height:8px; border-radius:50%; background:#66b7a7; box-shadow:12px 5px 0 #e47752, 20px -1px 0 #f3c05a;}
+  .grabBars{display:none; position:absolute; left:77px; bottom:74px; width:92px; height:90px;}
+  .grabBars:before{content:""; position:absolute; left:4px; top:12px; width:44px; height:44px; border-left:8px solid #f2a344; border-bottom:8px solid #f2a344; border-radius:0 0 0 16px; box-shadow:0 0 0 4px rgba(242,163,68,.12);} 
+  .grabBars:after{content:""; position:absolute; right:6px; bottom:8px; width:22px; height:54px; border-right:8px solid #f2a344; border-top:8px solid #f2a344; border-radius:0 14px 0 0; box-shadow:0 0 0 4px rgba(242,163,68,.12);} 
+  .showerFloor.nonslip{background:repeating-linear-gradient(45deg,#9ed7ea 0 6px,#c6eff9 6px 12px,#87c8dd 12px 18px);} 
+  .shopVisual,.kitVisual{height:96px; border:1px solid rgba(36,48,71,.1); box-shadow:inset 0 1px 0 rgba(255,255,255,.9);} 
+  .thumbLabel{border-radius:7px; z-index:3;} 
+  .thumbScene{left:10px; right:10px; height:44px; bottom:10px; opacity:.35;} 
+  .thumbIcon{display:none;}
+  .upgradeArt{z-index:2;}
+  .kitName{font-size:11px; font-weight:900; display:block; margin-top:2px;}
+  .kitSub{display:block; font-size:10px; color:#667287; font-weight:700; margin-top:3px; line-height:1.25;}
+  .shopCard h3{font-size:14px; margin:4px 0 3px; line-height:1.2;}
+  .shopCard p{font-size:11px; line-height:1.3;}
+  .upgradeArt{position:absolute; left:10px; right:10px; top:22px; bottom:10px;}
+  .upgradeArt:before,.upgradeArt:after{content:""; position:absolute;}
+  .upgradeArt.stair_lift:before{left:6px; bottom:8px; width:50px; height:24px; background:linear-gradient(180deg,transparent 0 6px,#b58e64 6px 10px,transparent 10px 14px,#b58e64 14px 18px,transparent 18px 22px,#b58e64 22px 24px);} .upgradeArt.stair_lift:after{left:50px; bottom:14px; width:18px; height:16px; border-radius:4px; background:#de835f; box-shadow:-7px -8px 0 0 #7b99b9;}
+  .upgradeArt.elevator:before{left:12px; top:4px; width:30px; height:42px; border-radius:5px; background:#d8e0e6; border:3px solid #9db0c2;} .upgradeArt.elevator:after{left:50px; top:16px; width:18px; height:18px; border-left:6px solid #6bb8a7; border-right:6px solid #6bb8a7;}
+  .upgradeArt.sensor_door:before{left:12px; top:2px; width:26px; height:44px; border-radius:8px 8px 3px 3px; background:#ca8b5e;} .upgradeArt.sensor_door:after{left:44px; top:8px; width:16px; height:16px; border-radius:50%; background:#56c8b8; box-shadow:0 0 0 7px rgba(86,200,184,.18);} 
+  .upgradeArt.nonslip_shower:before{left:10px; top:8px; width:34px; height:34px; border-radius:8px; background:repeating-linear-gradient(45deg,#a1d7ea 0 5px,#d2f1f7 5px 10px);} .upgradeArt.nonslip_shower:after{left:50px; top:10px; width:16px; height:26px; border-top:4px solid #8db4c2; border-right:4px solid #8db4c2; border-radius:0 12px 0 0;}
+  .upgradeArt.grab_bars:before{left:10px; top:5px; width:30px; height:28px; border-left:8px solid #f2a344; border-bottom:8px solid #f2a344; border-radius:0 0 0 14px;} .upgradeArt.grab_bars:after{right:10px; bottom:6px; width:16px; height:34px; border-right:8px solid #f2a344; border-top:8px solid #f2a344; border-radius:0 12px 0 0;}
+  .upgradeArt.low_drawers:before{left:10px; top:12px; width:48px; height:24px; border-radius:6px; background:repeating-linear-gradient(90deg,#e7c47d 0 12px,#d8ad63 12px 24px);} .upgradeArt.low_drawers:after{left:16px; top:18px; width:8px; height:2px; background:#9b6d45; box-shadow:14px 0 0 #9b6d45,28px 0 0 #9b6d45;}
+  .upgradeArt.seated_counter:before{left:8px; top:10px; width:44px; height:20px; border-radius:8px; background:#e7c47d; box-shadow:0 12px 0 0 rgba(0,0,0,0);} .upgradeArt.seated_counter:after{left:54px; top:14px; width:14px; height:22px; border-radius:4px 4px 8px 8px; background:#d8865e; box-shadow:0 -8px 0 #7ba2cc;}
+  .upgradeArt.night_lights:before{left:8px; right:8px; bottom:12px; height:10px; border-radius:999px; background:radial-gradient(circle,#ffd669 0 5px,transparent 6px) 0 0/22px 10px repeat-x;} .upgradeArt.night_lights:after{left:10px; top:6px; width:24px; height:18px; border-radius:8px; background:#9e88d8;}
+  .upgradeArt.easy_sofa:before{left:8px; top:16px; width:42px; height:24px; border-radius:12px 12px 5px 5px; background:#72b8aa; box-shadow:0 7px 0 #458f84;} .upgradeArt.easy_sofa:after{left:52px; top:10px; width:14px; height:22px; border-left:4px solid #70b8aa; transform:rotate(-18deg);} 
+  .upgradeArt.tea_table:before{left:16px; top:14px; width:24px; height:24px; border-radius:50%; background:#ca9160;} .upgradeArt.tea_table:after{left:46px; top:12px; width:16px; height:16px; border-radius:50%; background:#fff5da; border:3px solid #72baa9;}
+  .upgradeArt.health_corner:before{left:10px; top:10px; width:26px; height:24px; border-radius:6px; background:#fff; border:3px solid #e47752;} .upgradeArt.health_corner:after{left:42px; top:8px; width:18px; height:28px; border-radius:4px; background:#f2c36b; box-shadow:0 10px 0 #9cc6d8;} 
+  .upgradeArt.balcony_garden:before{left:12px; top:8px; width:16px; height:24px; border-radius:0 0 8px 8px; background:#bf8b56; box-shadow:22px 3px 0 #bf8b56, 44px 0 0 #bf8b56;} .upgradeArt.balcony_garden:after{left:4px; top:0; width:20px; height:18px; border-radius:50%; background:#76c56a; box-shadow:22px 3px 0 #6ab760, 44px -1px 0 #6ec566;}
+  .upgradeArt.motion_sensors:before{left:10px; top:10px; width:14px; height:14px; border-radius:50%; background:#69baa8; box-shadow:26px 0 0 #69baa8;} .upgradeArt.motion_sensors:after{left:8px; top:2px; width:46px; height:34px; border-top:3px solid rgba(105,186,168,.75); border-radius:50%;}
+
+  @keyframes fly{0%{transform:translateX(0)}50%{transform:translateX(24px) translateY(-6px)}100%{transform:translateX(0)}}
+  @keyframes npcWalk{0%{transform:rotate(-11deg)}100%{transform:rotate(13deg)}}
+  .viewport{height:100%; overflow:auto hidden; position:relative; touch-action:none; scroll-behavior:smooth; padding:18px;}
+  .world{position:relative; width:1380px; height:660px; margin:0 auto;}
+  .ground{position:absolute; left:0; right:0; bottom:7px; height:82px; border-radius:50% 50% 0 0/100% 100% 0 0; background:linear-gradient(180deg,#a8d682,#76bb73); box-shadow:inset 0 18px 0 rgba(255,255,255,.2); z-index:1;}
+  .path{position:absolute; left:70px; bottom:10px; width:290px;height:54px; background:repeating-linear-gradient(90deg,#d7bd99 0 24px,#cda978 25px 46px); border-radius:40px; transform:skewX(-10deg); opacity:.9; z-index:2;}
+  .house{position:absolute; left:225px; top:42px; width:930px; height:522px; filter:drop-shadow(0 26px 24px rgba(55,50,69,.20)); z-index:6;}
+  .roof{position:absolute; left:26px; top:-30px; width:878px; height:68px; background:linear-gradient(135deg,#d86e58,#f0a25c); clip-path:polygon(4% 100%,20% 0,80% 0,96% 100%); border:4px solid rgba(255,255,255,.65); box-shadow:inset 0 -10px 0 rgba(0,0,0,.06);}
+  .floorSlab{position:absolute; left:0; width:930px; height:14px; border-radius:999px; background:linear-gradient(90deg,#8b5f41,#c58b5f,#8b5f41); box-shadow:0 4px 10px rgba(0,0,0,.12);}
+  .floorSlab.mid{top:255px}.floorSlab.base{bottom:0;height:18px;}
+  .room{position:absolute; border:5px solid rgba(76,54,44,.58); border-bottom:0; border-radius:12px 12px 0 0; background:#fff; overflow:hidden; box-shadow:inset 0 -12px 18px rgba(75,54,47,.06);} 
+  .room:before{content:""; position:absolute; inset:0; background:linear-gradient(135deg,rgba(255,255,255,.3),rgba(255,255,255,0) 38%),radial-gradient(circle at 18% 20%,rgba(255,255,255,.52),transparent 25%); pointer-events:none;}
+  .roomLabel{position:absolute; top:8px; left:10px; z-index:2; padding:3px 8px; background:rgba(255,255,255,.86); border:1px solid rgba(36,48,71,.1); border-radius:8px; font-size:10px; font-weight:900; letter-spacing:.02em; color:#506078; text-transform:uppercase;}
+  .entrance{left:0; top:268px; width:148px; height:252px; background:linear-gradient(180deg,#ffe6c7,#fff7de);}
+  .living{left:148px; top:268px; width:236px; height:252px; background:linear-gradient(180deg,#fff0d8,#fff9ea);}
+  .kitchen{left:384px; top:268px; width:214px; height:252px; background:linear-gradient(180deg,#e7f8f0,#fbfff9);}
+  .bathroom{left:598px; top:268px; width:178px; height:252px; background:linear-gradient(180deg,#e2f3ff,#f5fcff);}
+  .stairsRoom{left:776px; top:268px; width:154px; height:252px; background:linear-gradient(180deg,#fff5d6,#fffaf0);}
+  .bedroom{left:0; top:24px; width:300px; height:232px; background:linear-gradient(180deg,#f7ecff,#fff5ff);}
+  .care{left:300px; top:24px; width:258px; height:232px; background:linear-gradient(180deg,#eefbf7,#fffef7);}
+  .balcony{left:558px; top:24px; width:218px; height:232px; background:linear-gradient(180deg,#e8f8ff,#edffec);}
+  .landing{left:776px; top:24px; width:154px; height:232px; background:linear-gradient(180deg,#fff3ce,#fff9e9);}
+  .wallpaper{position:absolute; left:0; right:0; top:0; height:72px; opacity:.25; background-image:radial-gradient(circle,#b37ad6 1.5px,transparent 1.8px); background-size:18px 18px;}
+  .floorPattern{position:absolute; left:0; right:0; bottom:0; height:45px; opacity:.55; background:repeating-linear-gradient(45deg,rgba(118,84,56,.12) 0 12px,rgba(255,255,255,.12) 12px 24px);}
+  .window{position:absolute; width:72px; height:56px; border:5px solid #f7fdff; background:linear-gradient(135deg,#aee2ff,#e8fbff); border-radius:13px; box-shadow:0 5px 12px rgba(60,90,100,.13), inset 0 -10px 0 rgba(95,165,190,.13);}
+  .window:before,.window:after{content:""; position:absolute; background:rgba(255,255,255,.75);}.window:before{left:50%;top:0;bottom:0;width:4px}.window:after{top:50%;left:0;right:0;height:4px}
+  .sun{position:absolute; right:15px; top:10px; width:24px;height:24px; background:#ffd75c; border-radius:50%; box-shadow:0 0 18px #ffd75c;}
+  .door{position:absolute; left:54px; bottom:24px; width:54px; height:122px; background:linear-gradient(90deg,#b9774f,#e5a466); border-radius:14px 14px 5px 5px; transform-origin:left bottom; transition:.45s ease; border:4px solid rgba(101,65,45,.35); box-shadow:inset -10px 0 18px rgba(0,0,0,.12);}
+  .door.open{transform:perspective(180px) rotateY(-56deg); background:linear-gradient(90deg,#c9865d,#ffbd79);}
+  .doorSensor{display:none; position:absolute; left:112px; bottom:126px; width:18px;height:18px; border-radius:50%; background:#49c6ba; box-shadow:0 0 0 6px rgba(73,198,186,.18); animation:pulse 1.5s infinite;}
+  .step{position:absolute; left:44px; bottom:15px; width:76px; height:11px; border-radius:999px; background:#ad8c6d; box-shadow:0 5px 0 #92755e; transition:.3s;}
+  .entryRamp{display:none; position:absolute; left:35px; bottom:10px; width:92px; height:18px; background:linear-gradient(90deg,#d5c5ad,#f5e7cf); border-radius:15px; transform:skewX(-20deg); border:1px solid rgba(0,0,0,.08);}
+  .sofa{position:absolute; left:34px; bottom:46px; width:112px; height:58px; background:linear-gradient(180deg,#f18f74,#d96c5e); border-radius:24px 24px 10px 10px; box-shadow:0 12px 0 #a65352, 0 18px 22px rgba(58,35,45,.16); transition:.3s;}
+  .sofa:before{content:""; position:absolute; left:6px; right:6px; top:24px; height:18px; background:rgba(255,255,255,.18); border-radius:999px;}
+  .sofa.easy{height:70px; bottom:46px; background:linear-gradient(180deg,#7bc4b6,#4fa797); box-shadow:0 8px 0 #39897d, 0 18px 22px rgba(58,35,45,.16);}
+  .teaTable{display:none; position:absolute; left:150px; bottom:50px; width:58px;height:32px;background:linear-gradient(180deg,#d7a66d,#9a6941); border-radius:50%; box-shadow:0 9px 0 #765130;}
+  .teaTable:before{content:""; position:absolute; left:18px; top:-12px; width:18px;height:18px;border-radius:50%; background:#fff8e2; border:3px solid #72baa9;}
+  .rug{position:absolute; left:23px; bottom:26px; width:198px;height:56px; border-radius:50%; background:radial-gradient(ellipse,#f8e9ad 0 50%,#f3c05a 51% 68%,transparent 69%); opacity:.75;}
+  .tv{position:absolute; right:18px; bottom:100px; width:54px;height:36px;background:#273247;border-radius:8px; box-shadow:0 8px 0 #1a2336;}
+  .cabinet{position:absolute; right:10px; bottom:42px; width:68px;height:34px;background:#e9c59a;border-radius:9px; box-shadow:0 8px 0 #b4875d;}
+  .counter{position:absolute; left:16px; bottom:40px; width:180px; height:58px; background:linear-gradient(180deg,#fee1a3,#ddb873); border-radius:12px 12px 6px 6px; box-shadow:0 10px 0 #b28b51;}
+  .counter:before{content:""; position:absolute; left:0; right:0; top:-12px; height:16px; border-radius:12px; background:#fff4d6; border:1px solid rgba(0,0,0,.05);}
+  .counter.low{height:44px; width:118px; background:linear-gradient(180deg,#f3d598,#cfa45e);}
+  .stool{display:none; position:absolute; left:133px; bottom:40px; width:36px;height:36px; border-radius:50% 50% 8px 8px; background:#88c7b7; box-shadow:0 16px 0 -8px #589b8f;}
+  .upperShelf{position:absolute; left:35px; top:58px; width:142px; height:42px; background:linear-gradient(180deg,#b9d5ca,#85b8a8); border-radius:10px; box-shadow:0 7px 0 #629886; transition:.25s;}
+  .shelfItem{position:absolute; width:18px;height:26px;border-radius:6px 6px 3px 3px;background:#ffbc69; top:8px; left:15px; box-shadow:32px 0 #f07167,64px 0 #95d5b2,96px 0 #ffd166;}
+  .drawers{display:none; position:absolute; left:26px; bottom:49px; width:92px; height:42px; z-index:2;}
+  .drawer{height:19px; margin-bottom:4px; border-radius:7px; background:#f8f0df; border:2px solid rgba(126,81,47,.2); transform:translateX(0); transition:.25s;}
+  .drawers.open .drawer:nth-child(1){transform:translateX(30px)} .drawers.open .drawer:nth-child(2){transform:translateX(18px)}
+  .fridge{position:absolute; right:10px; bottom:38px; width:42px; height:98px; background:linear-gradient(180deg,#f7fbff,#d7e9f1); border-radius:13px 13px 6px 6px; border:2px solid rgba(80,100,110,.12); box-shadow:0 8px 0 #abc8d1;}
+  .shower{position:absolute; left:20px; bottom:43px; width:72px; height:112px; border-radius:12px; border:4px solid rgba(84,147,186,.35); background:linear-gradient(180deg,rgba(255,255,255,.4),rgba(140,211,255,.2)); overflow:hidden;}
+  .shower:before{content:""; position:absolute; top:10px; left:14px; width:25px;height:25px;border-radius:50%; border:5px solid #82aeca; border-left-color:transparent; border-bottom-color:transparent; transform:rotate(22deg);}
+  .showerFloor{position:absolute; left:10px; right:10px; bottom:4px; height:22px; background:repeating-linear-gradient(45deg,#c8edff 0 8px,#9ed4ed 9px 16px); border-radius:50%; transition:.25s;}
+  .showerFloor.nonslip{background:repeating-linear-gradient(45deg,#6fbfb3 0 5px,#a7e0d7 5px 10px); box-shadow:0 0 0 4px rgba(111,191,179,.2);}
+  .toilet{position:absolute; right:16px; bottom:45px; width:56px; height:58px; background:#fff; border-radius:14px 14px 24px 24px; box-shadow:0 8px 0 #c9e1ea;}
+  .grabBars{display:none; position:absolute; left:93px; bottom:107px; width:64px; height:42px; border-left:8px solid #f2a344; border-bottom:8px solid #f2a344; border-radius:0 0 0 12px; box-shadow:0 0 0 4px rgba(242,163,68,.14);}
+  .sink{position:absolute; right:18px; bottom:126px; width:48px;height:24px;border-radius:50%;background:#eefbff; box-shadow:0 8px 0 #9dc7d5;}
+  .stairs{position:absolute; left:18px; bottom:39px; width:118px; height:160px;}
+  .stepLine{position:absolute; right:0; height:16px; background:linear-gradient(90deg,#b58f65,#e7c69a); border-radius:4px; box-shadow:0 5px 0 #94714c;}
+  .stepLine:nth-child(1){bottom:0;width:118px}.stepLine:nth-child(2){bottom:24px;width:102px}.stepLine:nth-child(3){bottom:48px;width:86px}.stepLine:nth-child(4){bottom:72px;width:70px}.stepLine:nth-child(5){bottom:96px;width:54px}.stepLine:nth-child(6){bottom:120px;width:38px}.stepLine:nth-child(7){bottom:144px;width:22px}
+  .stairLiftRail{display:none; position:absolute; left:14px; bottom:60px; width:128px; height:106px; border-bottom:7px solid #579e91; border-left:7px solid transparent; transform:skewY(-36deg); border-radius:20px;}
+  .stairLiftChair{display:none; position:absolute; left:44px; bottom:82px; width:34px;height:33px; background:#7bc4b6; border-radius:10px 10px 6px 6px; box-shadow:0 8px 0 #3b8679;}
+  .liftShaft{position:absolute; right:12px; bottom:33px; width:44px; height:186px; background:rgba(130,128,140,.12); border:2px dashed rgba(54,70,92,.22); border-radius:14px; display:flex; align-items:flex-end; justify-content:center;}
+  .liftCabin{display:none; width:38px; height:76px; margin-bottom:3px; border-radius:13px; background:linear-gradient(180deg,#e9f4ff,#acd2eb); border:3px solid rgba(70,103,132,.28); box-shadow:inset 0 -14px 0 rgba(80,130,160,.12); transition:.45s;}
+  .liftCabin.up{margin-bottom:104px;}
+  .liftDoors{display:none; position:absolute; right:4px; bottom:32px; width:60px;height:82px; border-radius:13px; border:3px solid #9ec8dc; background:linear-gradient(90deg,#dcebf2 0 47%,#b9d7e5 48% 52%,#dcebf2 53%);}
+  .bed{position:absolute; left:24px; bottom:47px; width:132px; height:74px; background:linear-gradient(180deg,#b89bdd,#8f79c5); border-radius:20px 20px 10px 10px; box-shadow:0 12px 0 #6b5fa3;}
+  .bed:before{content:""; position:absolute; left:10px; top:8px; width:46px;height:28px;border-radius:12px;background:#fff8e9;}
+  .wardrobe{position:absolute; right:20px; bottom:42px; width:72px;height:126px;background:linear-gradient(180deg,#d8b580,#ad7c54); border-radius:13px; box-shadow:0 9px 0 #875d3c;}
+  .nightPath{position:absolute; left:159px; bottom:38px; width:124px; height:38px; border-radius:50%; background:rgba(48,40,74,.08); transition:.25s;}
+  .nightPath.dim{box-shadow:inset 0 0 30px rgba(30,26,49,.38); background:rgba(33,28,56,.22);}
+  .nightLights{display:none; position:absolute; left:160px; bottom:50px; width:116px;height:9px; background:repeating-linear-gradient(90deg,#ffe37b 0 10px,transparent 10px 23px); filter:drop-shadow(0 0 6px #ffe37b); border-radius:999px;}
+  .careDesk{position:absolute; left:34px; bottom:45px; width:102px;height:58px;background:linear-gradient(180deg,#f5d89c,#d29f5b); border-radius:14px 14px 7px 7px; box-shadow:0 10px 0 #ad7d40;}
+  .careCabinet{display:none; position:absolute; left:35px; bottom:104px; width:86px;height:70px;background:linear-gradient(180deg,#fff,#dff8f0); border:3px solid rgba(81,158,140,.22); border-radius:14px; box-shadow:0 8px 0 #a9d8cb;}
+  .careCabinet:before{content:"+"; position:absolute; left:28px; top:12px; font-size:40px; line-height:1; color:#e47752; font-weight:900;}
+  .bp{display:none; position:absolute; left:130px; bottom:55px; width:35px;height:42px;background:#eef7ff;border:3px solid #8ebbd2;border-radius:8px;}
+  .sensors{display:none; position:absolute; right:34px; top:58px; width:45px;height:45px;border-radius:50%;background:#29344b; box-shadow:0 0 0 0 rgba(102,183,167,.4); animation:pulseSensor 1.3s infinite;}
+  .sensors:before{content:"";position:absolute;inset:13px;border-radius:50%;background:#66b7a7;}
+  .plants{position:absolute; left:18px; bottom:42px; width:160px; height:95px;}
+  .plant{position:absolute; bottom:0; width:36px;height:34px;border-radius:8px;background:#bf8a52; box-shadow:0 7px 0 #936536;}
+  .plant:before{content:"";position:absolute;left:-6px;bottom:22px;width:45px;height:45px;background:radial-gradient(circle at 25% 55%,#6bbf67 0 12px,transparent 13px),radial-gradient(circle at 55% 42%,#89d47b 0 15px,transparent 16px),radial-gradient(circle at 76% 68%,#4ba758 0 12px,transparent 13px);}
+  .plant.p1{left:10px}.plant.p2{left:70px; transform:scale(.8)}.plant.p3{left:122px; transform:scale(1.05)}
+  .gardenPlus{display:none; position:absolute; inset:0;}
+  .gardenSeat{position:absolute; right:22px; bottom:48px; width:62px;height:48px;background:linear-gradient(180deg,#ffd17e,#e4a54c); border-radius:24px 24px 10px 10px; box-shadow:0 9px 0 #b67835;}
+  .planterRail{position:absolute; left:15px; right:15px; bottom:12px; height:22px; border-radius:999px; background:linear-gradient(90deg,#6fbf73,#a5dc79); box-shadow:0 -6px 0 rgba(255,255,255,.25) inset;}
+  .shade{position:absolute; right:20px; top:45px; width:98px;height:34px;background:#ffcc80; border-radius:70px 70px 0 0; box-shadow:0 5px 0 #e7a746;}
+  .balconyRail{position:absolute; left:9px; right:9px; bottom:22px; height:48px; border-bottom:7px solid rgba(67,87,94,.28); background:repeating-linear-gradient(90deg,rgba(67,87,94,.35) 0 5px, transparent 5px 24px); border-radius:10px;}
+
+  /* Enhanced FFE / clearer dollhouse details */
+  .woodgrain{background-image:repeating-linear-gradient(90deg,rgba(92,58,36,.14) 0 2px,transparent 2px 14px),linear-gradient(180deg,rgba(255,255,255,.16),rgba(0,0,0,.04));}
+  .shoeCabinet{position:absolute; left:18px; bottom:34px; width:86px; height:44px; border-radius:11px 11px 6px 6px; background:repeating-linear-gradient(90deg,#d6a76f 0 8px,#c28a56 8px 16px); box-shadow:0 8px 0 #8f6541; border:2px solid rgba(93,61,40,.16); transition:.25s;}
+  .shoeCabinet:before{content:""; position:absolute; left:8px; right:8px; top:15px; height:3px; border-radius:999px; background:rgba(95,61,40,.34); box-shadow:0 13px 0 rgba(95,61,40,.26);}
+  .shoeCabinet:after{content:""; position:absolute; left:18px; top:24px; width:12px; height:12px; border-radius:50%; background:#76543b; box-shadow:32px 0 0 #76543b;}
+  .shoeCabinet.open{transform:translateX(10px); filter:brightness(1.08);}
+  .coatRack{position:absolute; right:14px; top:58px; width:36px; height:110px; border-left:6px solid #9b6a45;}
+  .coatRack:before{content:""; position:absolute; left:-18px; top:15px; width:34px; height:18px; background:#78aede; border-radius:15px 15px 8px 8px; box-shadow:10px 30px 0 #e47752;}
+  .mirror{position:absolute; left:82px; top:50px; width:36px; height:54px; border-radius:18px 18px 12px 12px; background:linear-gradient(135deg,#e5fbff,#a8d9ed); border:4px solid #f5d2a2; box-shadow:0 5px 0 rgba(133,92,52,.18);}
+  .floorLamp{position:absolute; left:12px; bottom:92px; width:24px; height:78px; border-left:5px solid #956b48;}
+  .floorLamp:before{content:""; position:absolute; left:-16px; top:-8px; width:36px; height:26px; border-radius:16px 16px 6px 6px; background:#fff0bc; box-shadow:0 0 20px rgba(255,226,128,.55);}
+  .bookShelf{position:absolute; right:84px; bottom:47px; width:46px; height:90px; border-radius:10px; background:#c9955c; box-shadow:0 8px 0 #94663d; border:2px solid rgba(91,58,36,.12);}
+  .bookShelf:before{content:""; position:absolute; left:6px; right:6px; top:13px; height:6px; background:rgba(97,59,36,.33); box-shadow:0 25px 0 rgba(97,59,36,.33),0 50px 0 rgba(97,59,36,.33);}
+  .bookShelf:after{content:""; position:absolute; left:9px; top:22px; width:7px; height:20px; background:#6aa8e8; box-shadow:10px 0 #f07167,20px 0 #ffd166,0 26px #95d5b2,12px 26px #b89bdd,22px 26px #e47752;}
+  .wallArt{position:absolute; left:98px; top:58px; width:50px; height:36px; border:5px solid #fff4d6; border-radius:9px; background:linear-gradient(135deg,#9bd7c7 0 42%,#ffd166 43% 56%,#e47752 57%); box-shadow:0 5px 0 rgba(93,63,45,.12);}
+  .teaTable.active{display:block;}
+  .cabinet{background:repeating-linear-gradient(90deg,#e9c59a 0 9px,#d4a775 9px 18px); border:2px solid rgba(97,61,38,.12);}
+  .cabinet:before{content:""; position:absolute; left:13px; top:13px; width:8px; height:8px; border-radius:50%; background:#8a5a36; box-shadow:32px 0 0 #8a5a36;}
+  .cabinet.open{transform:translateX(-8px); filter:brightness(1.08);}
+  .upperShelf{background:repeating-linear-gradient(90deg,#b9d5ca 0 13px,#9bc7b8 13px 26px); border:2px solid rgba(72,120,110,.18);}
+  .upperShelf:after{content:""; position:absolute; left:17px; right:17px; bottom:9px; height:4px; background:rgba(42,80,72,.32); border-radius:999px; box-shadow:36px 0 0 rgba(42,80,72,.32),72px 0 0 rgba(42,80,72,.32);}
+  .wallTiles{position:absolute; left:9px; right:8px; bottom:101px; height:42px; opacity:.45; background-image:linear-gradient(#b7dbd1 1px,transparent 1px),linear-gradient(90deg,#b7dbd1 1px,transparent 1px); background-size:22px 18px; border-radius:12px;}
+  .kitchenSink{position:absolute; left:94px; bottom:89px; width:48px; height:18px; border-radius:50%; background:#eafaff; border:3px solid #a7cfd7; z-index:2;}
+  .kitchenSink:before{content:""; position:absolute; left:17px; top:-15px; width:17px; height:17px; border:4px solid #83a7b0; border-left:0; border-bottom:0; border-radius:0 14px 0 0;}
+  .stove{position:absolute; left:24px; bottom:89px; width:54px; height:19px; border-radius:9px; background:#344057; z-index:2; box-shadow:inset 0 0 0 3px rgba(255,255,255,.12);}
+  .stove:before{content:""; position:absolute; left:9px; top:5px; width:9px; height:9px; border-radius:50%; border:2px solid #f3c05a; box-shadow:22px 0 0 -2px #f07167;}
+  .counter{background:repeating-linear-gradient(90deg,#fee1a3 0 9px,#e8c77e 9px 18px);}
+  .counter:after{content:""; position:absolute; left:18px; right:20px; top:25px; height:2px; background:rgba(105,70,41,.22); box-shadow:0 18px 0 rgba(105,70,41,.18);}
+  .drawer:after{content:""; position:absolute; left:37px; top:7px; width:18px; height:4px; border-radius:999px; background:#a67148;}
+  .fridge:before{content:""; position:absolute; left:6px; right:6px; top:42px; height:2px; background:#b6d4de;}
+  .fridge:after{content:""; position:absolute; right:6px; top:16px; width:4px; height:28px; border-radius:999px; background:#91aeb8; box-shadow:0 45px 0 #91aeb8;}
+  .towelRail{position:absolute; left:98px; top:68px; width:58px; height:15px; border-top:6px solid #85b6c8; border-radius:10px;}
+  .towelRail:after{content:""; position:absolute; left:10px; top:2px; width:28px; height:34px; border-radius:4px 4px 12px 12px; background:#ffd7b5; box-shadow:14px 4px 0 #e8fbff; opacity:.95;}
+  .bathMat{position:absolute; left:82px; bottom:25px; width:74px; height:23px; border-radius:50%; background:repeating-linear-gradient(90deg,#bde9f6 0 8px,#8dc9d9 8px 16px); opacity:.8;}
+  .showerBottles{position:absolute; left:26px; bottom:119px; width:10px; height:20px; background:#ffd166; border-radius:5px 5px 2px 2px; box-shadow:14px 4px #e47752,28px 0 #66b7a7;}
+  .bed{background:linear-gradient(180deg,#c8abe9,#8f79c5);}
+  .bed:after{content:""; position:absolute; left:12px; right:12px; bottom:9px; height:16px; background:repeating-linear-gradient(45deg,rgba(255,255,255,.16) 0 7px,rgba(0,0,0,.04) 7px 14px); border-radius:10px;}
+  .nightstand{position:absolute; left:159px; bottom:47px; width:42px; height:48px; border-radius:11px 11px 6px 6px; background:repeating-linear-gradient(90deg,#d0a36c 0 8px,#b77e51 8px 16px); box-shadow:0 8px 0 #875d3c;}
+  .nightstand:before{content:""; position:absolute; left:17px; top:17px; width:8px; height:8px; border-radius:50%; background:#6c482e;}
+  .bedLamp{position:absolute; left:166px; bottom:96px; width:26px; height:34px; border-left:4px solid #8f6542;}
+  .bedLamp:before{content:""; position:absolute; left:-12px; top:-8px; width:28px; height:22px; border-radius:16px 16px 6px 6px; background:#ffeaa2; box-shadow:0 0 12px rgba(255,232,141,.65);}
+  .wardrobe{background:repeating-linear-gradient(90deg,#d8b580 0 11px,#bc8c5f 11px 22px); border:2px solid rgba(93,61,41,.15);}
+  .wardrobe:before{content:""; position:absolute; left:50%; top:10px; bottom:8px; width:2px; background:rgba(94,61,39,.28);}
+  .wardrobe:after{content:""; position:absolute; left:24px; top:56px; width:8px; height:8px; border-radius:50%; background:#714c32; box-shadow:20px 0 0 #714c32;}
+  .wardrobe.open{transform:perspective(180px) rotateY(-4deg); filter:brightness(1.09);}
+  .careCalendar{position:absolute; left:150px; top:72px; width:46px; height:44px; border-radius:8px; background:#fff; border:4px solid #f3c05a; box-shadow:0 5px 0 rgba(151,104,38,.15);}
+  .careCalendar:before{content:""; position:absolute; left:7px; right:7px; top:14px; height:4px; background:#e47752; box-shadow:0 10px 0 #66b7a7;}
+  .medicineTray{position:absolute; left:46px; bottom:111px; width:48px; height:16px; border-radius:9px; background:#fff6df; border:2px solid #e3c27e; display:none;}
+  .medicineTray:before{content:""; position:absolute; left:8px; top:4px; width:8px; height:8px; border-radius:50%; background:#e47752; box-shadow:13px 0 #66b7a7,26px 0 #6aa8e8;}
+  .wateringCan{position:absolute; right:18px; bottom:48px; width:34px; height:25px; background:#77b8d8; border-radius:12px 10px 12px 12px; box-shadow:0 5px 0 #4d87a3;}
+  .wateringCan:before{content:""; position:absolute; right:-11px; top:4px; width:20px; height:6px; background:#77b8d8; transform:rotate(-18deg); border-radius:999px;}
+  .windChime{position:absolute; left:25px; top:42px; width:30px; height:70px; border-top:4px solid rgba(67,87,94,.4);}
+  .windChime:before{content:""; position:absolute; left:3px; top:9px; width:4px; height:45px; background:#99b6bd; box-shadow:10px 6px #99b6bd,20px 0 #99b6bd; border-radius:999px; animation:sway 1.7s ease-in-out infinite alternate;}
+  .objectTip{position:absolute; left:0; top:0; z-index:16; display:none; transform:translate(-50%,-100%); background:rgba(36,48,71,.94); color:#fff; padding:6px 10px; border-radius:999px; font-size:11px; font-weight:900; pointer-events:none; white-space:nowrap; box-shadow:0 7px 16px rgba(0,0,0,.16);}
+  .effectText{position:absolute; z-index:25; pointer-events:none; font-weight:950; color:#26364f; background:rgba(255,255,255,.9); border:1px solid rgba(36,48,71,.11); border-radius:999px; padding:5px 10px; box-shadow:0 9px 20px rgba(36,48,71,.12); animation:floatUp 1.3s ease-out forwards;}
+  .room.flash{animation:roomFlash .55s ease-out;}
+  .world.dimMoment:after{content:""; position:absolute; inset:0; background:rgba(20,23,44,.20); z-index:10; pointer-events:none; animation:dimMoment .9s ease-out forwards;}
+  .player.reach .avatarHead{animation:reachHead .45s ease-in-out;}.player.reach .body{animation:reachBody .45s ease-in-out;}
+  .player.bend .body{animation:bendBody .45s ease-in-out;}
+  .player.slip{animation:slipWobble .45s ease-in-out;}.player.sit .body{animation:sitStand .55s ease-in-out;}
+  @keyframes floatUp{0%{transform:translate(-50%,0); opacity:0}15%{opacity:1}100%{transform:translate(-50%,-50px); opacity:0}}
+  @keyframes roomFlash{0%{filter:brightness(1)}35%{filter:brightness(1.08) saturate(1.08)}100%{filter:brightness(1)}}
+  @keyframes dimMoment{0%{opacity:0}25%{opacity:1}100%{opacity:0}}
+  @keyframes reachHead{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+  @keyframes reachBody{0%,100%{transform:scaleY(1)}50%{transform:scaleY(1.08) translateY(-6px)}}
+  @keyframes bendBody{0%,100%{transform:rotate(0)}50%{transform:rotate(13deg) translateY(8px)}}
+  @keyframes slipWobble{0%,100%{margin-left:0}25%{margin-left:-10px}50%{margin-left:8px}75%{margin-left:-5px}}
+  @keyframes sitStand{0%,100%{transform:translateY(0)}50%{transform:translateY(13px) scaleY(.88)}}
+  @keyframes sway{0%{transform:rotate(-3deg)}100%{transform:rotate(4deg)}}
+  .zoneGlow{position:absolute; border:4px dashed #f08f4f; border-radius:18px; background:rgba(255,217,130,.18); animation:pulse 1s infinite; pointer-events:auto; display:none; z-index:8;}
+  .zoneGlow .arrow{position:absolute; left:50%; top:-62px; transform:translateX(-50%); font-size:46px; filter:drop-shadow(0 4px 2px rgba(0,0,0,.15)); animation:bob 1s infinite;}
+  .player{position:absolute; left:0; top:0; width:48px; height:78px; z-index:12; transform:translate3d(-42px,424px,0); transition:transform .08s linear; filter:drop-shadow(0 9px 6px rgba(34,42,50,.18));}
+  .avatarHead{position:absolute; left:9px; top:0; width:31px;height:31px;border-radius:50%; background:#ffd2a8; border:3px solid rgba(65,48,41,.1);}
+  .avatarHead:before{content:"";position:absolute; left:6px;top:-6px; width:22px;height:11px;background:#4d342b;border-radius:12px 12px 4px 4px;}
+  .face{position:absolute; left:0; right:0; top:8px; text-align:center; font-size:15px; line-height:1;}
+  .body{position:absolute; left:8px; top:30px; width:34px;height:36px; border-radius:14px 14px 9px 9px; background:linear-gradient(180deg,#5ea9e9,#3473bd);}
+  .body.avatarB{background:linear-gradient(180deg,#ee7d93,#bb4b72);} .body.avatarC{background:linear-gradient(180deg,#84c979,#449e69);}
+  .leg{position:absolute; top:62px; width:11px;height:20px; border-radius:6px; background:#30384c; animation:walk .5s infinite alternate paused;}
+  .leg.l{left:13px}.leg.r{right:11px; animation-delay:.25s;}
+  .player.walking .leg{animation-play-state:running;}
+  .breathBubble{display:none; position:absolute; left:39px; top:6px; padding:3px 7px; border-radius:999px; background:#fff; border:1px solid rgba(0,0,0,.1); font-size:12px; font-weight:900; color:#d15f53; box-shadow:0 4px 12px rgba(0,0,0,.12); animation:bob 1s infinite;}
+  .player.tired .breathBubble{display:block;}
+  .msg{position:absolute; left:50%; bottom:20px; transform:translateX(-50%); width:min(680px, calc(100% - 40px)); background:rgba(255,253,248,.95); border:1px solid rgba(36,48,71,.12); border-radius:22px; box-shadow:0 18px 42px rgba(36,48,71,.22); padding:13px 16px; z-index:18; font-weight:760; display:none;}
+  .msg small{display:block; color:var(--muted); font-weight:650; margin-top:3px;}
+  .panel{min-width:0; background:rgba(255,253,248,.94); border:1px solid rgba(255,255,255,.8); border-radius:28px; padding:13px; box-shadow:var(--shadow); overflow:auto;}
+  .panel h2{font-size:16px; margin:2px 0 10px;}
+  .panelSection{background:#fff; border:1px solid var(--line); border-radius:20px; padding:12px; margin-bottom:12px; box-shadow:0 8px 18px rgba(36,48,71,.06);}
+  .missionList{display:grid; gap:7px; font-size:13px;}
+  .missionItem{display:flex; gap:8px; align-items:flex-start; padding:7px; border-radius:13px; background:#f8fafc; border:1px solid rgba(36,48,71,.07);}
+  .tick{width:20px;height:20px;border-radius:50%; display:grid; place-items:center; font-size:12px; flex:0 0 auto; background:#f1f5f9; color:#94a3b8; font-weight:900;}
+  .missionItem.done .tick{background:#ddf7ee;color:#12624f;}
+  .scoreRow{display:grid; grid-template-columns:78px 1fr 36px; gap:8px; align-items:center; font-size:12px; font-weight:800; margin:8px 0;}
+  .bar{height:10px; background:#eef2f7; border-radius:999px; overflow:hidden; box-shadow:inset 0 1px 2px rgba(0,0,0,.08);}
+  .fill{height:100%; width:0%; border-radius:999px; background:linear-gradient(90deg,#74c69d,#f3c05a,#e47752); transition:.3s;}
+  .fill.cool{background:linear-gradient(90deg,#6aa8e8,#66b7a7);}.fill.warn{background:linear-gradient(90deg,#f3c05a,#e47752);}
+  .miniTag{font-size:10px; padding:3px 6px; border-radius:999px; background:#e7f7f3; color:#276d61; white-space:nowrap;}
+  .hintBox{font-size:12px; color:#566174; line-height:1.35;}
+  .overlay{position:fixed; inset:0; z-index:50; background:rgba(26,30,42,.38); display:none; align-items:center; justify-content:center; padding:18px; backdrop-filter:blur(8px);}
+  .overlay.show{display:flex;}
+  .modal{width:min(980px,96vw); max-height:92vh; overflow:auto; background:linear-gradient(180deg,#fffdf8,#fff6e7); border-radius:30px; box-shadow:0 30px 80px rgba(13,19,33,.35); border:1px solid rgba(255,255,255,.85); padding:20px; position:relative;}
+  .modal.narrow{width:min(650px,96vw);}
+  .modal h2{font-size:30px; margin:0 0 8px; letter-spacing:-.03em;}
+  .modal p{color:#5b6474; line-height:1.45;}
+  .heroGrid{display:grid; grid-template-columns:1.1fr .9fr; gap:16px; align-items:stretch;}
+  .heroCard{border:1px solid var(--line); background:rgba(255,255,255,.72); border-radius:24px; padding:16px; box-shadow:0 10px 24px rgba(36,48,71,.08);}
+  .avatarChoices{display:flex; gap:10px; flex-wrap:wrap;}
+  .avatarChoice{padding:12px; border-radius:18px; border:2px solid rgba(36,48,71,.1); background:#fff; min-width:88px; text-align:center; font-weight:850;}
+  .avatarChoice.active{border-color:#e47752; box-shadow:0 0 0 5px rgba(228,119,82,.14);}
+  .ageRow{display:flex; gap:10px; align-items:center; margin-top:12px;}
+  .ageRow input{width:92px; border-radius:13px; border:1px solid var(--line); padding:10px; background:#fff; font-weight:800;}
+  .bigButton{padding:13px 18px; border-radius:17px; font-weight:950; background:#26364f; color:white; box-shadow:0 12px 22px rgba(38,54,79,.22);}
+  .bigButton.accent{background:linear-gradient(135deg,#e47752,#f3c05a); color:#3a2f1c;}.bigButton.good{background:linear-gradient(135deg,#66b7a7,#9adf8f); color:#173f37;}.bigButton.light{background:#fff;color:#26364f;border:1px solid var(--line);}
+  .startIllustration{position:relative; height:260px; border-radius:24px; overflow:hidden; background:linear-gradient(180deg,#b9e7ff,#f9e2b9); border:1px solid rgba(36,48,71,.08);}
+  .miniHouse{position:absolute; left:30px; bottom:20px; width:280px; height:160px; border-radius:20px; background:linear-gradient(90deg,#ffe5c2 0 33%,#e6faef 33% 66%,#e7f3ff 66%); border:6px solid rgba(122,82,55,.42); box-shadow:0 18px 22px rgba(60,45,35,.16);}
+  .miniHouse:before{content:""; position:absolute; left:-18px; right:-18px; top:-45px; height:58px; background:linear-gradient(135deg,#d86e58,#f3a35f); clip-path:polygon(6% 100%,22% 0,78% 0,94% 100%);}
+  .miniPerson{position:absolute; right:74px; bottom:34px; font-size:60px; filter:drop-shadow(0 9px 8px rgba(0,0,0,.18));}
+  .shopGrid{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:10px;}
+  .shopCard{position:relative; background:#fff; border:2px solid rgba(36,48,71,.1); border-radius:20px; padding:12px; min-height:192px; box-shadow:0 9px 18px rgba(36,48,71,.06); text-align:left; transition:.15s;}
+  .shopCard:hover{transform:translateY(-2px)} .shopCard.active{border-color:#e47752; box-shadow:0 0 0 5px rgba(228,119,82,.12),0 12px 22px rgba(36,48,71,.08);}
+  .shopIcon{font-size:30px; margin-bottom:6px;}.shopCard h3{font-size:14px;margin:0 0 4px}.shopCard p{font-size:11px; margin:0; color:#647084; line-height:1.3}.category{display:inline-block; margin-top:8px; font-size:10px; padding:4px 7px; border-radius:999px; background:#eef7ff; color:#2c648c; font-weight:850;}
+  .countBadge{position:absolute; top:10px; right:10px; width:25px;height:25px; border-radius:50%; background:#26364f; color:white; display:none; place-items:center; font-size:12px; font-weight:950;}.shopCard.active .countBadge{display:grid;}
+  .priorityGrid{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; margin:13px 0;}
+  .priorityOption{padding:14px; border-radius:18px; border:2px solid rgba(36,48,71,.1); background:#fff; text-align:left; font-weight:850;}
+  .priorityOption:hover,.priorityOption.active{border-color:#66b7a7; box-shadow:0 0 0 5px rgba(102,183,167,.14);}
+  .chartRows{display:grid; gap:8px; margin:14px 0;}
+  .dataTable{width:100%; border-collapse:collapse; font-size:12px; background:#fff; border-radius:14px; overflow:hidden;}
+  .dataTable th,.dataTable td{padding:8px; border-bottom:1px solid #eef1f5; text-align:left; vertical-align:top;}.dataTable th{background:#f6f8fb;color:#4b5563;}
+  .toast{position:fixed; left:50%; top:92px; transform:translateX(-50%) translateY(-10px); background:#26364f; color:#fff; border-radius:999px; padding:10px 16px; box-shadow:0 16px 38px rgba(13,19,33,.28); z-index:80; opacity:0; pointer-events:none; transition:.25s; font-weight:850; max-width:min(92vw,720px); text-align:center;}.toast.show{opacity:1; transform:translateX(-50%) translateY(0);}
+  .touchControls{position:fixed; left:14px; right:14px; bottom:12px; z-index:40; display:none; justify-content:space-between; pointer-events:none;}
+  .touchCluster{display:flex; gap:10px; align-items:center; pointer-events:auto;}
+  .touchBtn{width:58px;height:58px; border-radius:20px; background:rgba(255,255,255,.86); border:1px solid rgba(36,48,71,.14); box-shadow:0 10px 24px rgba(36,48,71,.18); display:grid; place-items:center; font-weight:950; font-size:22px; touch-action:none; user-select:none;}
+  .touchBtn.mainAction{width:76px; background:#26364f; color:white; font-size:14px;}
+  .touchBtn.updown{font-size:16px;}
+  .languageToggle{display:inline-flex; padding:3px; background:#eef2f7; border-radius:999px; border:1px solid rgba(36,48,71,.07);}
+  .languageToggle button{padding:6px 9px; border-radius:999px; background:transparent; font-size:12px; font-weight:900;}.languageToggle button.active{background:#fff; box-shadow:0 3px 8px rgba(36,48,71,.1);}
+  @keyframes pulse{0%,100%{transform:scale(1); opacity:.95}50%{transform:scale(1.025); opacity:.65}}
+  @keyframes pulseSensor{0%{box-shadow:0 0 0 0 rgba(102,183,167,.45)}70%{box-shadow:0 0 0 18px rgba(102,183,167,0)}100%{box-shadow:0 0 0 0 rgba(102,183,167,0)}}
+  @keyframes bob{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(-8px)}}
+  @keyframes walk{0%{transform:rotate(-10deg) translateY(0)}100%{transform:rotate(12deg) translateY(2px)}}
+  @media (max-width:980px){
+    body{overflow:hidden;}.topbar{height:auto; min-height:70px; align-items:flex-start;}.brand h1{font-size:16px}.brand p{display:none}.logo{width:48px;height:48px}.main{grid-template-columns:1fr; grid-template-rows:minmax(0,1fr) auto; padding:8px;}.panel{max-height:190px; border-radius:22px; display:grid; grid-template-columns:1fr 1fr; gap:8px; padding:9px;}.panelSection{margin:0; padding:9px;}.panel h2{font-size:14px}.stageWrap{border-radius:22px}.viewport{padding:8px 8px 96px}.touchControls{display:flex;}.toolbar .hideMobile{display:none}.shopGrid{grid-template-columns:1fr}.heroGrid{grid-template-columns:1fr}.priorityGrid{grid-template-columns:1fr}.modal h2{font-size:24px}.main{padding-bottom:0;}
+  }
+  @media (max-width:620px){.toolbar{gap:5px}.pill{font-size:11px;padding:8px 9px}.panel{grid-template-columns:1fr; max-height:220px}.scoreRow{grid-template-columns:70px 1fr 31px}.world{transform-origin:left top;}.modal{padding:14px; border-radius:22px}.startIllustration{height:190px}.miniHouse{transform:scale(.78); transform-origin:left bottom}.miniPerson{font-size:46px; right:48px}.topbar{padding:8px}.brand{gap:8px}.touchBtn{width:52px;height:52px;border-radius:18px}.touchBtn.mainAction{width:68px}}
+
+
+  /* V6: proportion correction + clear interactive hints */
+  .hotspotHint{position:absolute; width:24px; height:24px; border-radius:50%; display:grid; place-items:center; z-index:15; pointer-events:none; background:linear-gradient(180deg,#fff8c9,#ffd46b); border:2px solid rgba(89,65,20,.18); box-shadow:0 4px 0 rgba(148,104,38,.22),0 0 0 7px rgba(255,212,107,.16); color:#513b13; font-size:11px; font-weight:950; animation:hotspotPulse 1.7s ease-in-out infinite;}
+  .hotspotHint:after{content:attr(data-label); position:absolute; left:50%; top:27px; transform:translateX(-50%); display:none; white-space:nowrap; padding:4px 8px; border-radius:999px; background:rgba(255,253,248,.95); border:1px solid rgba(36,48,71,.12); color:#344159; font-size:10px; font-weight:850; box-shadow:0 8px 16px rgba(36,48,71,.12);} 
+  .hotspotHint.near{transform:scale(1.16); background:linear-gradient(180deg,#e5fff8,#70d4bd); box-shadow:0 4px 0 rgba(38,116,96,.25),0 0 0 10px rgba(112,212,189,.20);}
+  .hotspotHint.near:after{display:block;}
+  @keyframes hotspotPulse{0%,100%{opacity:.86; transform:translateY(0)}50%{opacity:1; transform:translateY(-3px)}}
+
+  .living .sofa{left:42px; bottom:47px; width:98px; height:54px; border-radius:22px 22px 9px 9px;}
+  .living .sofa.easy{height:62px;}
+  .living .rug{left:30px; bottom:27px; width:166px; height:48px;}
+  .living .teaTable{left:147px; bottom:50px; width:45px; height:27px;}
+  .living .bookShelf{right:74px; bottom:48px; width:38px; height:80px;}
+  .living .tv{right:18px; bottom:112px; width:46px; height:30px;}
+  .living .cabinet{right:12px; bottom:43px; width:58px; height:30px;}
+  .living .floorLamp{left:12px; bottom:92px; transform:scale(.86); transform-origin:left bottom;}
+  .living .bookStack{left:144px; bottom:39px; transform:scale(.82); transform-origin:left bottom;}
+  .living .remote{left:162px; bottom:80px;}
+  .living .windowCurtain{transform:scale(.82); transform-origin:left top;}
+  .living .cushion{transform:scale(.85); transform-origin:left top;}
+
+  .entrance .shoeCabinet{left:15px; bottom:34px; width:74px; height:40px;}
+  .entrance .entryBench{left:16px; bottom:83px; transform:scale(.82); transform-origin:left bottom;}
+  .entrance .sidePlant{left:92px; bottom:32px; transform:scale(.78); transform-origin:left bottom;}
+  .entrance .umbrellaStand{left:114px; bottom:31px; transform:scale(.76); transform-origin:left bottom;}
+  .entrance .coatRack{right:10px; top:72px; transform:scale(.78); transform-origin:right top;}
+  .entrance .mirror{left:78px; top:58px; transform:scale(.86); transform-origin:left top;}
+
+  .kitchen .counter{left:18px; bottom:40px; width:150px; height:54px;}
+  .kitchen .counter.low{width:112px; height:42px;}
+  .kitchen .upperShelf{left:42px; top:60px; width:122px; height:38px;}
+  .kitchen .shelfItem{transform:scale(.76); transform-origin:left top;}
+  .kitchen .fridge{right:10px; bottom:40px; width:37px; height:92px;}
+  .kitchen .stove{left:24px; bottom:88px; width:48px; height:17px;}
+  .kitchen .kitchenSink{left:86px; bottom:89px; width:44px; height:16px;}
+  .kitchen .rangeHood{left:28px; top:72px; width:50px; transform:scale(.86); transform-origin:left top;}
+  .kitchen .plateRack{left:102px; top:63px; transform:scale(.82); transform-origin:left top;}
+  .kitchen .fruitBowl{left:102px; bottom:90px; transform:scale(.8); transform-origin:left bottom;}
+  .kitchen .kettle{left:76px; bottom:90px; transform:scale(.82); transform-origin:left bottom;}
+  .kitchen .drawers{left:25px; bottom:50px; width:84px; height:39px;}
+  .kitchen .stool{left:123px; width:30px; height:30px;}
+
+  .bathroom .shower{left:16px; bottom:44px; width:66px; height:104px;}
+  .bathroom .vanityMirror{left:91px; top:58px; width:42px; height:30px;}
+  .bathroom .sink{right:20px; bottom:125px; width:42px; height:22px;}
+  .bathroom .toilet{right:18px; bottom:46px; width:48px; height:54px;}
+  .bathroom .towelRail{left:98px; top:90px; transform:scale(.82); transform-origin:left top;}
+  .bathroom .tpHolder{left:142px; bottom:74px; transform:scale(.82); transform-origin:left bottom;}
+  .bathroom .bathMat{left:78px; bottom:27px; width:64px; height:20px;}
+  .bathroom .grabBars{left:72px; bottom:72px; width:88px; height:88px;}
+  .bathroom .grabBars:before{left:4px; top:10px; width:36px; height:36px; border-left:7px solid #f2a344; border-bottom:7px solid #f2a344;}
+  .bathroom .grabBars:after{right:8px; bottom:8px; width:14px; height:40px; border-right:7px solid #f2a344; border-top:7px solid #f2a344;}
+
+  .bedroom .bed{left:26px; bottom:50px; width:116px; height:68px;}
+  .bedroom .nightstand{left:150px; bottom:49px; width:36px; height:42px;}
+  .bedroom .bedLamp{left:156px; bottom:92px; transform:scale(.83); transform-origin:left bottom;}
+  .bedroom .wardrobe{right:22px; bottom:44px; width:62px; height:116px;}
+  .bedroom .wallFrame{left:218px; top:52px; transform:scale(.82); transform-origin:left top;}
+  .bedroom .nightPath{left:148px; bottom:38px; width:124px; height:34px;}
+  .bedroom .nightLights{left:154px; bottom:50px; width:112px;}
+
+  .care .careDesk{left:36px; bottom:46px; width:90px; height:52px;}
+  .care .careCabinet{left:35px; bottom:101px; width:76px; height:62px;}
+  .care .bp{left:126px; bottom:55px; transform:scale(.82); transform-origin:left bottom;}
+  .care .sensors{right:30px; top:62px; width:38px; height:38px;}
+  .care .careChair{left:104px; bottom:47px; transform:scale(.82); transform-origin:left bottom;}
+  .care .readingLamp{left:158px; bottom:88px; transform:scale(.82); transform-origin:left bottom;}
+  .care .firstAidBox{left:194px; bottom:84px; transform:scale(.82); transform-origin:left bottom;}
+  .care .careCalendar{left:146px; top:78px; transform:scale(.82); transform-origin:left top;}
+  .care .noticeBoard{left:188px; top:78px; transform:scale(.78); transform-origin:left top;}
+
+  .balcony .plants{left:18px; bottom:42px; width:135px; transform:scale(.88); transform-origin:left bottom;}
+  .balcony .balconyStool{left:104px; bottom:48px; transform:scale(.82); transform-origin:left bottom;}
+  .balcony .wateringCan{right:20px; bottom:49px; transform:scale(.82); transform-origin:right bottom;}
+  .balcony .hangingPot{left:152px; top:39px; transform:scale(.82); transform-origin:left top;}
+  .balcony .windChime{left:24px; top:50px; transform:scale(.82); transform-origin:left top;}
+  .balcony .birdHouse{left:35px; top:96px; transform:scale(.82); transform-origin:left top;}
+  .balcony .gardenSeat{right:24px; bottom:50px; width:52px; height:42px;}
+  .balcony .shade{right:20px; top:52px; width:86px; height:30px;}
+
+  .stairsRoom .stairs,.landing .stairs{left:20px; bottom:42px; transform:scale(.9); transform-origin:left bottom;}
+  .stairsRoom .liftShaft,.landing .liftShaft{right:12px; bottom:36px; width:40px; height:174px;}
+  .stairsRoom .stairLiftRail,.landing .stairLiftRail{transform:skewY(-36deg) scale(.88); transform-origin:left bottom;}
+
+  @media (max-width:980px){.hotspotHint:after{display:none!important}.hotspotHint{width:22px;height:22px;font-size:10px}}
+
+</style>
+</head>
+<body>
+<div class="app">
+  <div class="topbar">
+    <div class="brand">
+      <div class="logo">🏡</div>
+      <div>
+        <h1 data-i="title">Life+ 70+ Dollhouse Home</h1>
+        <p data-i="subtitle">Explore a normal home, feel daily pain points, then choose only 6 upgrades for your future 70+ home.</p>
+      </div>
+    </div>
+    <div class="toolbar">
+      <div class="languageToggle"><button id="langEn" class="active">EN</button><button id="langVi">VI</button></div>
+      <button class="pill" id="helpBtn" data-i="help">Help</button>
+      <button class="pill" id="shopBtn" data-i="upgrades">Upgrades</button>
+      <button class="pill" id="dashboardBtn" data-i="dashboard">Dashboard</button>
+      <button class="pill primary" id="endBtn" data-i="endGame" disabled>End Game</button>
+    </div>
+  </div>
+
+  <div class="main">
+    <section class="stageWrap">
+      <div class="skyDecor"><div class="skySun"></div><div class="cloud c1"></div><div class="cloud c2"></div><div class="cloud c3"></div><div class="bird b1"></div><div class="bird b2"></div><div class="bird b3"></div></div>
+      <div class="viewport" id="viewport">
+        <div class="world" id="world">
+          <div class="cityBackdrop"><div class="skyline"><div class="bld b1"></div><div class="bld b2"></div><div class="bld b3"></div><div class="bld b4"></div><div class="bld b5"></div><div class="bld b6"></div><div class="bld b7"></div><div class="bld b8"></div><div class="bld b9"></div></div></div>
+          <div class="hillBack"></div>
+          <div class="backLane"></div>
+          <div class="ground"></div><div class="path"></div>
+          <div class="outsideShrub s1"></div><div class="outsideShrub s2"></div><div class="outsideShrub s3"></div>
+          <div class="outsideTree t1"><div class="trunk"></div><div class="leaf l1"></div><div class="leaf l2"></div><div class="leaf l3"></div></div>
+          <div class="outsideTree t2"><div class="trunk"></div><div class="leaf l1"></div><div class="leaf l2"></div><div class="leaf l3"></div></div>
+          <div class="outsideTree t3"><div class="trunk"></div><div class="leaf l1"></div><div class="leaf l2"></div><div class="leaf l3"></div></div>
+          <div class="npcLayer" id="npcLayer">
+            <div class="npcWalker" id="npc1" style="--shirt:#ee8a95"><div class="npcBubble">👋</div><div class="nhead"></div><div class="nhair"></div><div class="nbody"></div><div class="nleg l"></div><div class="nleg r"></div></div>
+            <div class="npcWalker" id="npc2" style="--shirt:#7fcb81"><div class="npcBubble">🙂</div><div class="nhead"></div><div class="nhair"></div><div class="nbody"></div><div class="nleg l"></div><div class="nleg r"></div></div>
+            <div class="npcWalker" id="npc3" style="--shirt:#7aaee0"><div class="npcBubble">💬</div><div class="nhead"></div><div class="nhair"></div><div class="nbody"></div><div class="nleg l"></div><div class="nleg r"></div></div>
+          </div>
+          <div class="house" id="house">
+            <div class="roof"></div>
+            <div class="room bedroom" data-zone="bedroom"><div class="roomLabel" data-i="bedroom">Bedroom</div><div class="wallpaper"></div><div class="window" style="left:28px;top:42px"></div><div class="bed"><div class="pillows"></div><div class="blanketFold"></div></div><div class="nightstand"></div><div class="bedLamp"></div><div class="wallFrame"></div><div class="wardrobe" id="wardrobe"></div><div class="nightPath dim" id="nightPath"></div><div class="nightLights" id="nightLights"></div><div class="floorPattern"></div></div>
+            <div class="room care" data-zone="care"><div class="roomLabel" data-i="care">Care Nook</div><div class="wallpaper"></div><div class="window" style="right:22px;top:42px"></div><div class="careCalendar"></div><div class="noticeBoard"></div><div class="careChair"></div><div class="readingLamp"></div><div class="firstAidBox"></div><div class="careDesk"></div><div class="careCabinet" id="careCabinet"></div><div class="medicineTray" id="medicineTray"></div><div class="bp" id="bp"></div><div class="sensors" id="sensors"></div><div class="floorPattern"></div></div>
+            <div class="room balcony" data-zone="balcony"><div class="roomLabel" data-i="balcony">Balcony Garden</div><div class="sun"></div><div class="windChime"></div><div class="birdHouse"></div><div class="windowCurtain" style="left:86px;top:48px; opacity:.75"></div><div class="balconyRail"></div><div class="plants"><div class="plant p1"></div><div class="plant p2"></div><div class="plant p3"></div></div><div class="balconyStool"></div><div class="hangingPot"></div><div class="wateringCan"></div><div class="gardenPlus" id="gardenPlus"><div class="shade"></div><div class="gardenSeat"></div><div class="planterRail"></div></div><div class="floorPattern"></div></div>
+            <div class="room landing" data-zone="landing"><div class="roomLabel" data-i="landing">Landing</div><div class="stairs"><div class="stepLine"></div><div class="stepLine"></div><div class="stepLine"></div><div class="stepLine"></div><div class="stepLine"></div><div class="stepLine"></div><div class="stepLine"></div></div><div class="stairLiftRail" id="stairLiftRailTop"></div><div class="stairLiftChair" id="stairLiftChairTop"></div><div class="liftShaft"><div class="liftCabin" id="liftCabinTop"></div></div><div class="floorPattern"></div></div>
+            <div class="floorSlab mid"></div>
+            <div class="room entrance" data-zone="entrance"><div class="roomLabel" data-i="entrance">Entrance</div><div class="window" style="left:16px;top:42px; width:58px;height:48px"></div><div class="mirror"></div><div class="coatRack"></div><div class="entryBench"></div><div class="sidePlant"></div><div class="umbrellaStand"></div><div class="shoeCabinet" id="shoeCabinet"></div><div class="door" id="frontDoor"></div><div class="doorSensor" id="doorSensor"></div><div class="entryRamp" id="entryRamp"></div><div class="step" id="entryStep"></div><div class="floorPattern"></div></div>
+            <div class="room living" data-zone="living"><div class="roomLabel" data-i="living">Living Room</div><div class="window" style="right:18px;top:42px"></div><div class="wallArt"></div><div class="floorLamp"></div><div class="windowCurtain" style="left:156px;top:42px"></div><div class="rug"></div><div class="sofa" id="sofa"><div class="cushion c1"></div><div class="cushion c2"></div></div><div class="teaTable" id="teaTable"></div><div class="bookStack"></div><div class="remote"></div><div class="bookShelf"></div><div class="tv"></div><div class="cabinet" id="mediaCabinet"></div><div class="floorPattern"></div></div>
+            <div class="room kitchen" data-zone="kitchen"><div class="roomLabel" data-i="kitchen">Kitchen</div><div class="wallTiles"></div><div class="rangeHood"></div><div class="plateRack"></div><div class="fruitBowl"></div><div class="upperShelf" id="upperShelf"><div class="shelfItem"></div></div><div class="counter" id="counter"></div><div class="stove"></div><div class="kettle"></div><div class="kitchenSink"></div><div class="drawers" id="drawers"><div class="drawer"></div><div class="drawer"></div></div><div class="stool" id="stool"></div><div class="fridge"></div><div class="floorPattern"></div></div>
+            <div class="room bathroom" data-zone="bathroom"><div class="roomLabel" data-i="bathroom">Bathroom</div><div class="shower"><div class="showerHead"></div><div class="showerBottles"></div><div class="bathShelf"></div><div class="showerFloor" id="showerFloor"></div></div><div class="towelRail"></div><div class="vanityMirror"></div><div class="sink"></div><div class="toilet"></div><div class="tpHolder"></div><div class="bathMat"></div><div class="grabBars" id="grabBars"></div><div class="floorPattern"></div></div>
+            <div class="room stairsRoom" data-zone="stairs"><div class="roomLabel" data-i="stairs">Stairs / Lift</div><div class="stairs"><div class="stepLine"></div><div class="stepLine"></div><div class="stepLine"></div><div class="stepLine"></div><div class="stepLine"></div><div class="stepLine"></div><div class="stepLine"></div></div><div class="stairLiftRail" id="stairLiftRail"></div><div class="stairLiftChair" id="stairLiftChair"></div><div class="liftShaft"><div class="liftCabin" id="liftCabin"></div></div><div class="liftDoors" id="liftDoors"></div><div class="floorPattern"></div></div>
+            <div class="floorSlab base"></div>
+            <div class="zoneGlow" id="zoneGlow"><div class="arrow">⬇️</div></div>
+            <div class="objectTip" id="objectTip"></div>
+            <div class="player" id="player"><div class="avatarHead"><div class="face" id="face">•‿•</div></div><div class="body" id="avatarBody"></div><div class="leg l"></div><div class="leg r"></div><div class="breathBubble">huff!</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="msg" id="msg"></div>
+    </section>
+
+    <aside class="panel">
+      <div class="panelSection">
+        <h2 data-i="missionPanel">Missions</h2>
+        <div class="missionList" id="missionList"></div>
+      </div>
+      <div class="panelSection">
+        <h2 data-i="scorePanel">Avatar Condition</h2>
+        <div id="scoreBars"></div>
+        <div class="hintBox" id="moodText">Mood: Neutral. Try entering the home.</div>
+      </div>
+      <div class="panelSection">
+        <h2 data-i="kitPanel">Upgrade Kit</h2>
+        <div class="hintBox" id="budgetText">Complete missions to unlock upgrade selection.</div>
+        <div class="kitGrid" id="kitGrid"></div>
+      </div>
+      <div class="panelSection hideMobile">
+        <h2 data-i="controlsPanel">Controls</h2>
+        <div class="hintBox" data-i="controlsText">Move: A/D or ◀/▶. Stairs: W/S or ▲/▼ near stair zone. Interact: E. Mobile: use touch buttons.</div>
+      </div>
+    </aside>
+  </div>
+</div>
+
+<div class="touchControls" aria-label="Mobile controls">
+  <div class="touchCluster">
+    <button class="touchBtn" data-hold="left">◀</button>
+    <button class="touchBtn" data-hold="right">▶</button>
+    <button class="touchBtn updown" data-tap="up">▲</button>
+    <button class="touchBtn updown" data-tap="down">▼</button>
+  </div>
+  <div class="touchCluster">
+    <button class="touchBtn mainAction" data-tap="jump">Jump</button>
+    <button class="touchBtn mainAction" data-tap="interact">E / Tap</button>
+  </div>
+</div>
+
+<div class="overlay show" id="startOverlay">
+  <div class="modal">
+    <div class="heroGrid">
+      <div class="heroCard">
+        <h2 data-i="startTitle">Design your future 70+ home</h2>
+        <p data-i="startText">Walk through a normal two-floor home, discover daily design pain points, then choose only 6 upgrades. Your choices become useful event survey data.</p>
+        <div class="avatarChoices" id="avatarChoices">
+          <button class="avatarChoice active" data-avatar="A">🙂<br><span data-i="avatarA">Blue</span></button>
+          <button class="avatarChoice" data-avatar="B">😊<br><span data-i="avatarB">Rose</span></button>
+          <button class="avatarChoice" data-avatar="C">😄<br><span data-i="avatarC">Green</span></button>
+        </div>
+        <div class="ageRow"><label for="ageInput" data-i="ageLabel">Your current age</label><input id="ageInput" type="number" min="10" max="100" value="35" /></div>
+        <p class="hintBox" data-i="startControls">Desktop: A/D or arrows to walk, W/S on stairs, E to interact. iPhone: use the on-screen buttons.</p>
+        <button class="bigButton accent" id="startBtn" data-i="startBtn">Start Home Tour</button>
+      </div>
+      <div class="startIllustration"><div class="miniHouse"></div><div class="miniPerson">🧑‍🦳</div></div>
+    </div>
+  </div>
+</div>
+
+<div class="overlay" id="priorityOverlay">
+  <div class="modal narrow">
+    <h2 data-i="priorityTitle">One trade-off question</h2>
+    <p data-i="priorityText">If you had limited budget for your future 70+ home, what would you prioritise first?</p>
+    <div class="priorityGrid" id="priorityGrid"></div>
+    <button class="bigButton good" id="priorityContinue" disabled data-i="continueToShop">Continue to Upgrade Shop</button>
+  </div>
+</div>
+
+<div class="overlay" id="shopOverlay">
+  <div class="modal">
+    <h2 data-i="shopTitle">Choose up to 6 upgrades</h2>
+    <p><span data-i="shopText">This fixed budget is intentional: choose what truly matters most. Selected:</span> <b id="selectedCount">0/6</b></p>
+    <div class="shopGrid" id="shopGrid"></div>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:14px;align-items:center;justify-content:space-between">
+      <div class="hintBox" data-i="shopHint">After choosing, select an item from the kit, move to the highlighted room, then press E or tap the highlighted area to install.</div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap"><button class="bigButton light" id="closeShop" data-i="close">Close</button><button class="bigButton accent" id="confirmShop" data-i="confirmSelection">Confirm Selection</button></div>
+    </div>
+  </div>
+</div>
+
+<div class="overlay" id="dashboardOverlay">
+  <div class="modal">
+    <h2 data-i="dashboardTitle">Session Dashboard</h2>
+    <p class="hintBox"><span data-i="sessionIdLabel">Session ID:</span> <b id="sessionIdText"></b></p>
+    <div class="heroGrid">
+      <div class="heroCard"><h3 data-i="priorityScores">Priority Scores</h3><div class="chartRows" id="dashboardScores"></div></div>
+      <div class="heroCard"><h3 data-i="summary">Summary</h3><div id="dashboardSummary" class="hintBox"></div></div>
+    </div>
+    <h3 data-i="eventLog">Event Log</h3>
+    <div style="max-height:260px;overflow:auto;border-radius:14px"><table class="dataTable" id="logTable"></table></div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:14px"><button class="bigButton good" id="exportCsv" data-i="exportCsv">Export CSV</button><button class="bigButton light" id="resetBtn" data-i="newPlayer">New Player / Reset</button><button class="bigButton light" id="closeDashboard" data-i="close">Close</button></div>
+  </div>
+</div>
+
+<div class="overlay" id="helpOverlay">
+  <div class="modal narrow">
+    <h2 data-i="helpTitle">How to play</h2>
+    <p data-i="helpText1">1) Enter the home. 2) Inspect the staircase, bathroom, kitchen shelf/cabinet, and bedroom night route. 3) Answer the priority question. 4) Choose only 6 upgrades. 5) Install at least 3 upgrades to finish.</p>
+    <p data-i="helpText2">Selected means you chose it from the shop. Installed means you placed it in the correct room. The dashboard records both for later CSV export.</p>
+    <button class="bigButton light" id="closeHelp" data-i="close">Close</button>
+  </div>
+</div>
+
+<div class="overlay" id="endOverlay">
+  <div class="modal">
+    <h2 data-i="thanksTitle">Thank you — End Game!</h2>
+    <p data-i="thanksText">Your choices help us understand what people value most for 70+ living.</p>
+    <div class="heroGrid">
+      <div class="heroCard"><h3 data-i="profileTitle">Your 70+ Home Profile</h3><div id="profileText"></div><div class="chartRows" id="endScores"></div></div>
+      <div class="heroCard"><h3 data-i="installedUpgrades">Installed Upgrades</h3><div id="endInstalled"></div></div>
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:14px"><button class="bigButton good" id="exportCsvEnd" data-i="exportCsv">Export CSV</button><button class="bigButton light" id="newPlayerEnd" data-i="newPlayer">New Player / Reset</button><button class="bigButton light" id="closeEnd" data-i="backToHome">Back to Home</button></div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+(() => {
+  const $ = (id) => document.getElementById(id);
+  const qs = (sel, root=document) => Array.from(root.querySelectorAll(sel));
+  const clamp = (v,min,max) => Math.max(min, Math.min(max, v));
+  const nowISO = () => new Date().toISOString();
+  const fixedBudget = 6;
+
+  const i18n = {
+    en: {
+      title:'Life+ 70+ Dollhouse Home', subtitle:'Explore a normal home, feel daily pain points, then choose only 6 upgrades for your future 70+ home.', help:'Help', upgrades:'Upgrades', dashboard:'Dashboard', endGame:'End Game',
+      bedroom:'Bedroom', care:'Care Nook', balcony:'Balcony Garden', landing:'Landing', entrance:'Entrance', living:'Living Room', kitchen:'Kitchen', bathroom:'Bathroom', stairs:'Stairs / Lift',
+      missionPanel:'Missions', scorePanel:'Avatar Condition', kitPanel:'Upgrade Kit', controlsPanel:'Controls', controlsText:'Move: A/D or ◀/▶. Stairs: W/S or ▲/▼ near stair zone. Interact: E. Mobile: use touch buttons.',
+      startTitle:'Design your future 70+ home', startText:'Walk through a normal two-floor home, discover daily design pain points, then choose only 6 upgrades. Your choices become useful event survey data.', avatarA:'Blue', avatarB:'Rose', avatarC:'Green', ageLabel:'Your current age', startControls:'Desktop: A/D or arrows to walk, W/S on stairs, E to interact. iPhone: use the on-screen buttons.', startBtn:'Start Home Tour',
+      priorityTitle:'One trade-off question', priorityText:'If you had limited budget for your future 70+ home, what would you prioritise first?', continueToShop:'Continue to Upgrade Shop',
+      shopTitle:'Choose up to 6 upgrades', shopText:'This fixed budget is intentional: choose what truly matters most. Selected:', shopHint:'After choosing, select an item from the kit, move to the highlighted room, then press E or tap the highlighted area to install.', close:'Close', confirmSelection:'Confirm Selection',
+      dashboardTitle:'Session Dashboard', sessionIdLabel:'Session ID:', priorityScores:'Priority Scores', summary:'Summary', eventLog:'Event Log', exportCsv:'Export CSV', newPlayer:'New Player / Reset',
+      helpTitle:'How to play', helpText1:'1) Enter the home. 2) Inspect the staircase, bathroom, kitchen shelf/cabinet, and bedroom night route. 3) Answer the priority question. 4) Choose only 6 upgrades. 5) Install at least 3 upgrades to finish.', helpText2:'Selected means you chose it from the shop. Installed means you placed it in the correct room. The dashboard records both for later CSV export.',
+      thanksTitle:'Thank you — End Game!', thanksText:'Your choices help us understand what people value most for 70+ living.', profileTitle:'Your 70+ Home Profile', installedUpgrades:'Installed Upgrades', backToHome:'Back to Home',
+      noKit:'Complete missions to unlock upgrade selection.', selectFromKit:'Select an upgrade from your kit, then install it at the glowing room.', kitEmpty:'No upgrades selected yet.',
+      moodNeutral:'Mood: Neutral. Try entering the home.', moodTired:'Mood: Tired. Stairs are using energy.', moodWorried:'Mood: Worried. Some home areas feel less stable.', moodHappy:'Mood: Happy. The home feels more comfortable.', moodConfident:'Mood: Confident. Safety and support are improving.', moodVeryHappy:'Mood: Very happy. This home is becoming future-ready.',
+      mEnter:'Enter the regular home', mStair:'Experience the staircase', mBath:'Inspect slippery bathroom', mKitchen:'Inspect kitchen storage', mNight:'Inspect bedroom night route', mPriority:'Answer priority trade-off',
+      doorMsg:'The front door opens automatically as you approach. Notice how arrival sets the first impression of accessibility.',
+      stairMsg:'The staircase feels tiring. Breath/fatigue increased — this is why vertical access matters at 70+.', stairLiftMsg:'The stair-lift makes vertical movement smoother and less tiring.', elevatorMsg:'The compact lift takes you between floors smoothly.',
+      bathMsg:'The wet shower area feels unstable. A small design choice can change confidence in daily routines.', bathGoodMsg:'The bathroom now feels supported and stable.',
+      kitchenMsg:'High shelves and deep cabinets require reaching or bending. At 70+, daily storage should reduce effort.', kitchenGoodMsg:'Kitchen storage now opens at a comfortable height with less bending and reaching.',
+      nightMsg:'The bedroom-to-bathroom route feels dim and confusing at night.', nightGoodMsg:'Low-level guide lights make the night route clear and calmer.',
+      sofaMsg:'A low sofa can be harder to stand from. Higher firm seating supports independence.', sofaGoodMsg:'The easy-rise sofa feels supportive and comfortable.',
+      teaMsg:'The tea table creates a friendly place for family visits and daily conversation.', careMsg:'A care nook organises medicine, checks, and visiting support without making the home feel clinical.', gardenMsg:'Balcony greenery adds sunlight, routine, calmness, and wellness.', sensorMsg:'Motion safety sensors provide quiet smart support for independent living.',
+      entryUpgradedMsg:'The sensor door and flush threshold make arrival smooth and hands-free.', entryStepMsg:'The small entry step is noticeable when carrying bags. A flush threshold would make arrival smoother.', shoeMsg:'The shoe cabinet opens, but bending near the entrance takes effort. A seat or better storage would help.', sofaLowMsg:'Sitting is easy, but standing from a low soft sofa takes strength.', mediaMsg:'The TV/media cabinet opens. Small storage is useful, but cluttered controls can become confusing.', shelfReachMsg:'Reaching high shelves stretches the body and uses energy.', baseCabinetMsg:'Bending to a deep base cabinet uses strength and balance.', fridgeMsg:'The fridge is reachable, but heavy doors and low drawers can still take effort.', sinkMsg:'The sink/toilet area is usable, but support bars would improve confidence.', wardrobeMsg:'The wardrobe opens. High hanging rails and low boxes create reaching and bending effort.', lampMsg:'The bedside lamp helps, but the route to bathroom still needs continuous low-level guide lighting.', balconyBaseMsg:'Fresh air helps recover energy. With more shade and seating, this could become a daily wellness routine.', careBaseMsg:'This empty nook could become a simple health-check corner for medicine, blood pressure and visiting care.', mirrorMsg:'The entrance mirror helps you pause and check yourself before heading out.', coatMsg:'Hanging bags or coats is familiar, but repeated reaching still uses energy.', bookshelfMsg:'Open shelves feel familiar, but clearer lower storage can be easier with age.', stoveMsg:'Standing at the stove for a while uses energy. A seated prep option can help.', bathMirrorMsg:'The vanity mirror and basin are easy to understand, but support nearby improves confidence.', bedMsg:'A familiar bed feels comfortable, but night-time support and a clear route matter too.', calendarMsg:'Visible reminders and routines can make independent living feel calmer.', wateringMsg:'Light gardening adds a gentle daily routine and positive movement.', npcMsg1:'A neighbour says hello — social contact just outside the home can brighten the day.', npcMsg2:'A passer-by asks whether your future home feels easy to use. Social connection matters too.', npcMsg3:'A neighbour reminds you that easy entrances help both residents and visitors.', energyLoss:'strength', energyGain:'strength recovered',
+      chooseFirst:'Choose one priority before opening the upgrade shop.', needMissions:'Inspect all pain points first. Use E near stairs, bathroom, kitchen shelf, and bedroom night route.', chooseAtLeast:'Choose at least one upgrade to continue.', selectedTooMany:'You can choose only 6 upgrades. This keeps the survey meaningful.', installed:'Installed', alreadyInstalled:'This upgrade is already installed.', wrongZone:'Move to the glowing room/zone, then press E or tap it to install.', canEnd:'You can now end the game, or continue installing more selected upgrades.', needThree:'Install at least 3 upgrades before ending.',
+      priorityOptions:['Moving easily between floors','Avoiding falls and accidents','Reducing effort in daily tasks','Health monitoring and care support','Fresh air, garden, and wellness','Family visits and social connection','Smart support and convenience']
+    },
+    vi: {
+      title:'Life+ Ngôi Nhà 70+ Dạng Dollhouse', subtitle:'Khám phá nhà ở thông thường, cảm nhận các bất tiện hằng ngày, rồi chỉ chọn 6 nâng cấp cho ngôi nhà tương lai tuổi 70+.', help:'Hướng dẫn', upgrades:'Nâng cấp', dashboard:'Bảng dữ liệu', endGame:'Kết thúc',
+      bedroom:'Phòng ngủ', care:'Góc chăm sóc', balcony:'Ban công xanh', landing:'Sảnh tầng', entrance:'Lối vào', living:'Phòng khách', kitchen:'Bếp', bathroom:'Phòng tắm', stairs:'Thang / Thang máy',
+      missionPanel:'Nhiệm vụ', scorePanel:'Tình trạng nhân vật', kitPanel:'Bộ nâng cấp', controlsPanel:'Điều khiển', controlsText:'Di chuyển: A/D hoặc ◀/▶. Lên xuống thang: W/S hoặc ▲/▼ gần khu thang. Tương tác: E. Điện thoại: dùng nút cảm ứng.',
+      startTitle:'Thiết kế ngôi nhà tương lai tuổi 70+', startText:'Đi qua một căn nhà hai tầng thông thường, nhận diện các bất tiện hằng ngày, sau đó chỉ chọn 6 nâng cấp. Lựa chọn của bạn trở thành dữ liệu khảo sát cho sự kiện.', avatarA:'Xanh', avatarB:'Hồng', avatarC:'Lá', ageLabel:'Tuổi hiện tại', startControls:'Máy tính: A/D hoặc phím mũi tên để đi, W/S ở cầu thang, E để tương tác. iPhone: dùng nút cảm ứng trên màn hình.', startBtn:'Bắt đầu tham quan',
+      priorityTitle:'Một câu hỏi đánh đổi', priorityText:'Nếu ngân sách cho ngôi nhà 70+ có giới hạn, bạn ưu tiên điều gì trước?', continueToShop:'Tiếp tục đến cửa hàng nâng cấp',
+      shopTitle:'Chọn tối đa 6 nâng cấp', shopText:'Ngân sách cố định là có chủ đích: hãy chọn điều thật sự quan trọng. Đã chọn:', shopHint:'Sau khi chọn, bấm một món trong bộ nâng cấp, đi đến phòng đang sáng lên, rồi nhấn E hoặc chạm vùng sáng để lắp đặt.', close:'Đóng', confirmSelection:'Xác nhận lựa chọn',
+      dashboardTitle:'Bảng dữ liệu phiên chơi', sessionIdLabel:'Mã phiên:', priorityScores:'Điểm ưu tiên', summary:'Tóm tắt', eventLog:'Nhật ký sự kiện', exportCsv:'Xuất CSV', newPlayer:'Người chơi mới / Reset',
+      helpTitle:'Cách chơi', helpText1:'1) Vào nhà. 2) Kiểm tra cầu thang, phòng tắm, tủ/kệ bếp và lối đi ban đêm trong phòng ngủ. 3) Trả lời câu hỏi ưu tiên. 4) Chỉ chọn 6 nâng cấp. 5) Lắp ít nhất 3 nâng cấp để kết thúc.', helpText2:'Đã chọn nghĩa là bạn chọn trong cửa hàng. Đã lắp nghĩa là bạn đặt vào đúng vị trí trong nhà. Bảng dữ liệu ghi nhận cả hai để xuất CSV.',
+      thanksTitle:'Cảm ơn — Kết thúc trò chơi!', thanksText:'Lựa chọn của bạn giúp hiểu rõ hơn mọi người coi trọng điều gì cho cuộc sống 70+.', profileTitle:'Hồ sơ nhà 70+ của bạn', installedUpgrades:'Nâng cấp đã lắp', backToHome:'Quay lại nhà',
+      noKit:'Hoàn thành nhiệm vụ để mở chọn nâng cấp.', selectFromKit:'Chọn một nâng cấp trong bộ, rồi lắp tại phòng đang sáng.', kitEmpty:'Chưa chọn nâng cấp nào.',
+      moodNeutral:'Tâm trạng: Bình thường. Hãy thử vào nhà.', moodTired:'Tâm trạng: Mệt. Cầu thang đang làm tốn sức.', moodWorried:'Tâm trạng: Lo lắng. Một số khu vực chưa tạo cảm giác an toàn.', moodHappy:'Tâm trạng: Vui. Ngôi nhà thoải mái hơn.', moodConfident:'Tâm trạng: Tự tin. An toàn và hỗ trợ đang tốt hơn.', moodVeryHappy:'Tâm trạng: Rất vui. Ngôi nhà đang sẵn sàng cho tương lai.',
+      mEnter:'Vào căn nhà thông thường', mStair:'Trải nghiệm cầu thang', mBath:'Kiểm tra sàn tắm trơn', mKitchen:'Kiểm tra lưu trữ bếp', mNight:'Kiểm tra lối đi đêm', mPriority:'Trả lời câu hỏi ưu tiên',
+      doorMsg:'Cửa chính tự mở khi bạn đến gần. Lối vào tạo ấn tượng đầu tiên về khả năng tiếp cận.',
+      stairMsg:'Cầu thang tạo cảm giác mệt. Hơi thở/mệt tăng lên — vì vậy di chuyển theo chiều đứng rất quan trọng ở tuổi 70+.', stairLiftMsg:'Ghế thang giúp lên xuống nhẹ nhàng và ít mệt hơn.', elevatorMsg:'Thang máy nhỏ giúp di chuyển giữa hai tầng êm hơn.',
+      bathMsg:'Khu tắm ướt tạo cảm giác thiếu ổn định. Một chi tiết thiết kế nhỏ có thể thay đổi sự tự tin trong sinh hoạt.', bathGoodMsg:'Phòng tắm giờ ổn định và có điểm tựa hơn.',
+      kitchenMsg:'Kệ cao và tủ sâu đòi hỏi phải với hoặc cúi. Ở tuổi 70+, lưu trữ nên giảm công sức hằng ngày.', kitchenGoodMsg:'Lưu trữ bếp giờ mở ở độ cao thoải mái hơn, giảm cúi và với.',
+      nightMsg:'Lối đi từ phòng ngủ đến phòng tắm về đêm bị tối và khó định hướng.', nightGoodMsg:'Đèn dẫn hướng thấp giúp lối đi ban đêm rõ và yên tâm hơn.',
+      sofaMsg:'Ghế sofa thấp có thể khó đứng dậy. Ghế cao và vững hỗ trợ sự độc lập.', sofaGoodMsg:'Sofa dễ đứng dậy tạo cảm giác nâng đỡ và thoải mái.',
+      teaMsg:'Bàn trà tạo nơi thân thiện để gia đình ghé thăm và trò chuyện hằng ngày.', careMsg:'Góc chăm sóc sắp xếp thuốc, kiểm tra sức khỏe và hỗ trợ thăm nom mà không làm nhà quá “y tế”.', gardenMsg:'Ban công xanh mang lại nắng, thói quen, sự thư giãn và sức khỏe.', sensorMsg:'Cảm biến an toàn hỗ trợ âm thầm cho cuộc sống độc lập.', mirrorMsg:'Gương ở lối vào giúp dừng lại một chút và chỉnh trang trước khi ra ngoài.', coatMsg:'Treo túi hoặc áo khoác là quen thuộc, nhưng việc với tay lặp lại vẫn tốn sức.', bookshelfMsg:'Kệ mở rất quen thuộc, nhưng lưu trữ rõ ràng ở tầm thấp sẽ dễ dùng hơn khi lớn tuổi.', stoveMsg:'Đứng nấu ở bếp một lúc sẽ tốn sức. Khu sơ chế có thể ngồi sẽ hữu ích hơn.', bathMirrorMsg:'Gương và lavabo dễ hiểu, nhưng có thêm điểm tựa gần đó sẽ tự tin hơn.', bedMsg:'Chiếc giường quen thuộc tạo cảm giác thoải mái, nhưng hỗ trợ ban đêm và lối đi rõ ràng cũng rất quan trọng.', calendarMsg:'Lịch nhắc và thói quen nhìn thấy được giúp sống độc lập bình tĩnh hơn.', wateringMsg:'Chăm cây nhẹ nhàng tạo nhịp sinh hoạt tích cực mỗi ngày.', npcMsg1:'Một người hàng xóm chào bạn — tương tác xã hội ngay trước nhà cũng giúp tinh thần tốt hơn.', npcMsg2:'Một người đi ngang hỏi liệu ngôi nhà tương lai của bạn có dễ sử dụng không. Kết nối xã hội cũng rất quan trọng.', npcMsg3:'Một hàng xóm nhắc rằng lối vào thuận tiện giúp cả người ở và khách đến thăm.',
+      chooseFirst:'Hãy chọn một ưu tiên trước khi mở cửa hàng nâng cấp.', needMissions:'Hãy kiểm tra đủ các điểm bất tiện trước. Nhấn E gần cầu thang, phòng tắm, kệ bếp và lối đi đêm.', chooseAtLeast:'Hãy chọn ít nhất một nâng cấp để tiếp tục.', selectedTooMany:'Bạn chỉ được chọn 6 nâng cấp. Điều này giúp dữ liệu khảo sát có ý nghĩa.', installed:'Đã lắp', alreadyInstalled:'Nâng cấp này đã được lắp.', wrongZone:'Hãy đi đến phòng/vùng đang sáng, rồi nhấn E hoặc chạm để lắp.', canEnd:'Bạn có thể kết thúc trò chơi, hoặc tiếp tục lắp thêm các nâng cấp đã chọn.', needThree:'Hãy lắp ít nhất 3 nâng cấp trước khi kết thúc.',
+      priorityOptions:['Di chuyển dễ dàng giữa các tầng','Tránh té ngã và tai nạn','Giảm công sức trong sinh hoạt','Theo dõi sức khỏe và chăm sóc','Không khí, vườn và sức khỏe tinh thần','Gia đình ghé thăm và kết nối xã hội','Hỗ trợ thông minh và tiện lợi']
+    }
+  };
+
+  const upgrades = [
+    {id:'stair_lift', icon:'🪑', name:{en:'Stair-lift Chair',vi:'Ghế thang'}, category:'Mobility / Safety / Comfort', zone:'stairs', installBox:[792,348,124,132], score:{mobility:32,safety:12,comfort:10}, message:'stairLiftMsg'},
+    {id:'elevator', icon:'🛗', name:{en:'Compact Home Elevator',vi:'Thang máy nhỏ'}, category:'Mobility / Safety / Smart', zone:'stairs', installBox:[856,320,66,184], score:{mobility:42,safety:16,comfort:12,smart:12}, message:'elevatorMsg'},
+    {id:'sensor_door', icon:'🚪', name:{en:'Sensor Door / Step-free Entry',vi:'Cửa cảm biến / lối vào phẳng'}, category:'Smart / Mobility / Safety', zone:'entrance', installBox:[22,360,112,142], score:{smart:15,mobility:12,safety:10,comfort:5}, message:'doorMsg'},
+    {id:'nonslip_shower', icon:'🧼', name:{en:'Non-slip Shower Floor',vi:'Sàn tắm chống trơn'}, category:'Safety / Comfort', zone:'bathroom', installBox:[612,390,92,112], score:{safety:28,comfort:8}, message:'bathGoodMsg'},
+    {id:'grab_bars', icon:'🟧', name:{en:'Bathroom Grab Bars',vi:'Tay vịn phòng tắm'}, category:'Safety / Health', zone:'bathroom', installBox:[676,388,86,110], score:{safety:25,health:8}, message:'bathGoodMsg'},
+    {id:'low_drawers', icon:'🗄️', name:{en:'Low Pull-out Drawers',vi:'Ngăn kéo thấp kéo ra'}, category:'Comfort / Safety', zone:'kitchen', installBox:[400,394,128,90], score:{comfort:22,safety:7}, message:'kitchenGoodMsg'},
+    {id:'seated_counter', icon:'🪑', name:{en:'Seated Kitchen Counter',vi:'Bàn bếp ngồi được'}, category:'Comfort / Health / Social', zone:'kitchen', installBox:[400,386,166,104], score:{comfort:20,health:7,social:5}, message:'kitchenGoodMsg'},
+    {id:'night_lights', icon:'💡', name:{en:'Night Guide Lighting',vi:'Đèn dẫn hướng ban đêm'}, category:'Safety / Smart / Comfort', zone:'bedroom', installBox:[154,154,128,78], score:{safety:20,smart:10,comfort:10}, message:'nightGoodMsg'},
+    {id:'easy_sofa', icon:'🛋️', name:{en:'Easy-rise Sofa',vi:'Sofa dễ đứng dậy'}, category:'Comfort / Safety / Social', zone:'living', installBox:[172,390,134,92], score:{comfort:18,safety:8,social:6,happiness:8}, message:'sofaGoodMsg'},
+    {id:'tea_table', icon:'🍵', name:{en:'Family Tea Table',vi:'Bàn trà gia đình'}, category:'Social / Happiness', zone:'living', installBox:[252,390,114,92], score:{social:28,happiness:15,comfort:5}, message:'teaMsg'},
+    {id:'health_corner', icon:'🩺', name:{en:'Health Check Corner',vi:'Góc kiểm tra sức khỏe'}, category:'Health / Safety', zone:'care', installBox:[334,82,176,154], score:{health:35,safety:8,comfort:5}, message:'careMsg'},
+    {id:'balcony_garden', icon:'🌿', name:{en:'Healing Balcony Garden',vi:'Ban công chữa lành'}, category:'Nature / Wellness', zone:'balcony', installBox:[576,84,178,150], score:{nature:35,happiness:16,health:8}, message:'gardenMsg'},
+    {id:'motion_sensors', icon:'📡', name:{en:'Motion Safety Sensors',vi:'Cảm biến an toàn'}, category:'Smart / Safety / Health', zone:'care', installBox:[432,72,98,92], score:{smart:32,safety:14,health:8}, message:'sensorMsg'}
+  ];
+  const upgradeMap = Object.fromEntries(upgrades.map(u => [u.id,u]));
+
+  const state = {
+    lang:'en', started:false, sessionId:'LP70-'+Date.now().toString(36)+'-'+Math.random().toString(36).slice(2,7).toUpperCase(),
+    startTime:null, endTime:null, avatar:'A', age:35,
+    player:{x:-42, floor:0, vy:0, jumping:false, dir:1}, keys:{left:false,right:false,up:false,down:false},
+    scores:{happiness:35,safety:35,comfort:35,mobility:0,health:0,nature:0,social:0,smart:0,breath:0,strength:100},
+    missions:{enter:false,stair:false,bath:false,kitchen:false,night:false,priority:false},
+    inspected:{stair:0,bath:0,kitchen:0,night:0,entrance:0}, priorityAnswer:'', selected:[], installed:[], activeUpgrade:null,
+    logs:[], drawersOpen:false, mediaOpen:false, shoeOpen:false, wardrobeOpen:false, shopConfirmed:false, lastZone:'outside', stairCooldown:0, messageTimer:null, touchHold:null, npcTalkIndex:0, npcs:[{id:'npc1',x:110,dir:1,speed:.62,min:90,max:1210,msg:'npcMsg1'},{id:'npc2',x:410,dir:1,speed:.52,min:120,max:1260,msg:'npcMsg2'},{id:'npc3',x:860,dir:1,speed:.58,min:140,max:1290,msg:'npcMsg3'}]
+  };
+
+  const floorY = {0:424, 1:179};
+  const floorRanges = {0:[-48,900],1:[-5,900]};
+  const rooms = {
+    entrance:{min:0,max:148,floor:0,label:'Entrance'}, living:{min:148,max:384,floor:0,label:'Living'}, kitchen:{min:384,max:598,floor:0,label:'Kitchen'}, bathroom:{min:598,max:776,floor:0,label:'Bathroom'}, stairs:{min:776,max:930,floor:0,label:'Stairs'},
+    bedroom:{min:0,max:300,floor:1,label:'Bedroom'}, care:{min:300,max:558,floor:1,label:'Care'}, balcony:{min:558,max:776,floor:1,label:'Balcony'}, landing:{min:776,max:930,floor:1,label:'Landing'}
+  };
+
+  const interactables = [
+    {id:'front_door', floor:0, min:45, max:115, zone:'entrance', name:{en:'front door',vi:'cửa chính'}},
+    {id:'shoe_cabinet', floor:0, min:18, max:82, zone:'entrance', name:{en:'shoe cabinet',vi:'tủ giày'}},
+    {id:'entry_mirror', floor:0, min:78, max:115, zone:'entrance', name:{en:'entrance mirror',vi:'gương lối vào'}},
+    {id:'coat_rack', floor:0, min:112, max:148, zone:'entrance', name:{en:'coat rack',vi:'giá treo áo'}},
+    {id:'sofa', floor:0, min:185, max:285, zone:'living', name:{en:'sofa',vi:'sofa'}},
+    {id:'media_cabinet', floor:0, min:338, max:383, zone:'living', name:{en:'TV cabinet',vi:'tủ TV'}},
+    {id:'bookshelf', floor:0, min:292, max:338, zone:'living', name:{en:'bookshelf',vi:'kệ sách'}},
+    {id:'high_shelf', floor:0, min:470, max:545, zone:'kitchen', name:{en:'high kitchen shelf',vi:'kệ bếp cao'}},
+    {id:'base_cabinet', floor:0, min:430, max:490, zone:'kitchen', name:{en:'deep base cabinet',vi:'tủ bếp dưới'}},
+    {id:'stove', floor:0, min:400, max:432, zone:'kitchen', name:{en:'stove / hob',vi:'bếp nấu'}},
+    {id:'fridge', floor:0, min:552, max:598, zone:'kitchen', name:{en:'fridge',vi:'tủ lạnh'}},
+    {id:'shower', floor:0, min:622, max:680, zone:'bathroom', name:{en:'shower floor',vi:'sàn tắm'}},
+    {id:'bath_mirror', floor:0, min:695, max:728, zone:'bathroom', name:{en:'bathroom mirror',vi:'gương phòng tắm'}},
+    {id:'sink_toilet', floor:0, min:720, max:770, zone:'bathroom', name:{en:'sink / toilet area',vi:'lavabo / bồn cầu'}},
+    {id:'bed', floor:1, min:45, max:135, zone:'bedroom', name:{en:'bed',vi:'giường'}},
+    {id:'bed_night', floor:1, min:155, max:225, zone:'bedroom', name:{en:'bed to bathroom night route',vi:'lối đêm từ giường đến WC'}},
+    {id:'wardrobe', floor:1, min:225, max:292, zone:'bedroom', name:{en:'wardrobe',vi:'tủ áo'}},
+    {id:'care_desk', floor:1, min:330, max:415, zone:'care', name:{en:'care desk',vi:'bàn góc chăm sóc'}},
+    {id:'care_calendar', floor:1, min:445, max:488, zone:'care', name:{en:'care calendar',vi:'lịch nhắc'}},
+    {id:'care_device', floor:1, min:500, max:555, zone:'care', name:{en:'health device / sensor',vi:'thiết bị sức khỏe / cảm biến'}},
+    {id:'balcony_plants', floor:1, min:585, max:705, zone:'balcony', name:{en:'balcony plants',vi:'cây ban công'}},
+    {id:'watering_can', floor:1, min:724, max:770, zone:'balcony', name:{en:'watering can',vi:'bình tưới'}}
+  ];
+
+  const hotspotHints = [
+    {id:'front_door',x:82,y:360,label:{en:'Door',vi:'Cửa'}},
+    {id:'shoe_cabinet',x:51,y:428,label:{en:'Shoe cabinet',vi:'Tủ giày'}},
+    {id:'entry_mirror',x:96,y:333,label:{en:'Mirror',vi:'Gương'}},
+    {id:'coat_rack',x:126,y:347,label:{en:'Coat rack',vi:'Treo áo'}},
+    {id:'sofa',x:242,y:407,label:{en:'Sofa',vi:'Sofa'}},
+    {id:'media_cabinet',x:352,y:421,label:{en:'TV cabinet',vi:'Tủ TV'}},
+    {id:'bookshelf',x:301,y:365,label:{en:'Bookshelf',vi:'Kệ sách'}},
+    {id:'high_shelf',x:488,y:326,label:{en:'High shelf',vi:'Kệ cao'}},
+    {id:'base_cabinet',x:450,y:429,label:{en:'Base cabinet',vi:'Tủ dưới'}},
+    {id:'stove',x:432,y:414,label:{en:'Stove',vi:'Bếp'}},
+    {id:'fridge',x:572,y:394,label:{en:'Fridge',vi:'Tủ lạnh'}},
+    {id:'shower',x:650,y:385,label:{en:'Shower',vi:'Sàn tắm'}},
+    {id:'sink_toilet',x:738,y:395,label:{en:'Sink / toilet',vi:'Lavabo / WC'}},
+    {id:'bath_mirror',x:718,y:327,label:{en:'Mirror',vi:'Gương'}},
+    {id:'bed',x:88,y:155,label:{en:'Bed',vi:'Giường'}},
+    {id:'bed_night',x:210,y:183,label:{en:'Night route',vi:'Lối đi đêm'}},
+    {id:'wardrobe',x:250,y:142,label:{en:'Wardrobe',vi:'Tủ áo'}},
+    {id:'care_desk',x:378,y:163,label:{en:'Care desk',vi:'Bàn chăm sóc'}},
+    {id:'care_calendar',x:468,y:92,label:{en:'Calendar',vi:'Lịch'}},
+    {id:'care_device',x:520,y:94,label:{en:'Device / sensor',vi:'Thiết bị'}},
+    {id:'balcony_plants',x:635,y:155,label:{en:'Plants',vi:'Cây'}},
+    {id:'watering_can',x:744,y:168,label:{en:'Watering can',vi:'Bình tưới'}}
+  ];
+  function createHotspotHints(){
+    const house=$('house');
+    hotspotHints.forEach(h=>{
+      if($("hint_"+h.id)) return;
+      const el=document.createElement('div');
+      el.className='hotspotHint'; el.id='hint_'+h.id; el.textContent='E'; el.dataset.hotspot=h.id;
+      el.style.left=h.x+'px'; el.style.top=h.y+'px';
+      el.dataset.label=(h.label[state.lang]||h.label.en);
+      house.appendChild(el);
+    });
+  }
+  function updateHotspotHints(activeObj=null){
+    hotspotHints.forEach(h=>{ const el=$("hint_"+h.id); if(!el) return; el.dataset.label=(h.label[state.lang]||h.label.en); el.classList.toggle('near', !!activeObj && activeObj.id===h.id); });
+  }
+
+  function t(key){ return i18n[state.lang][key] || i18n.en[key] || key; }
+  function localName(item){ return item.name[state.lang] || item.name.en; }
+
+  function setLang(lang){
+    state.lang = lang;
+    $('langEn').classList.toggle('active', lang==='en'); $('langVi').classList.toggle('active', lang==='vi');
+    qs('[data-i]').forEach(el => { const key=el.dataset.i; if(i18n[lang][key]) el.textContent=i18n[lang][key]; });
+    renderMissions(); renderScores(); renderKit(); renderShop(); renderPriorityOptions(); updateHotspotHints(nearestInteractable()); showMood();
+  }
+
+  function log(event_type, mission_or_interaction_type='', answer_or_learning='', item=null, selected_or_installed=''){
+    const row = {
+      session_id:state.sessionId, timestamp:nowISO(), event_type, mission_or_interaction_type, answer_or_learning,
+      item_id:item?.id || '', item_name:item ? localName(item) : '', item_category:item?.category || '', item_zone:item?.zone || '', selected_or_installed,
+      happiness_score:state.scores.happiness, safety_score:state.scores.safety, comfort_score:state.scores.comfort, mobility_score:state.scores.mobility, health_score:state.scores.health,
+      nature_score:state.scores.nature, social_score:state.scores.social, smart_score:state.scores.smart, breath_fatigue:state.scores.breath, strength_score:state.scores.strength,
+      fixed_budget:fixedBudget, budget_left:fixedBudget-state.selected.length, installed_count:state.installed.length
+    };
+    state.logs.push(row);
+    localStorage.setItem('lifePlusLastSession', JSON.stringify({state, logs:state.logs}));
+  }
+
+  function showToast(text){ const el=$('toast'); el.textContent=text; el.classList.add('show'); clearTimeout(showToast.timer); showToast.timer=setTimeout(()=>el.classList.remove('show'),2200); }
+  function showMsg(html, small=''){
+    const el=$('msg'); el.innerHTML = html + (small ? `<small>${small}</small>`:''); el.style.display='block';
+    clearTimeout(state.messageTimer); state.messageTimer=setTimeout(()=>{el.style.display='none'},4200);
+  }
+
+  function renderMissions(){
+    const list=[['enter','mEnter'],['stair','mStair'],['bath','mBath'],['kitchen','mKitchen'],['night','mNight'],['priority','mPriority']];
+    $('missionList').innerHTML=list.map(([k,label])=>`<div class="missionItem ${state.missions[k]?'done':''}"><div class="tick">${state.missions[k]?'✓':'•'}</div><div>${t(label)}</div></div>`).join('');
+  }
+
+  function renderScores(){
+    const names={happiness:'Happy',safety:'Safety',comfort:'Comfort',mobility:'Mobility',health:'Health',nature:'Nature',social:'Social',smart:'Smart',breath:'Breath',strength:'Strength'};
+    const vi={happiness:'Vui',safety:'An toàn',comfort:'Thoải mái',mobility:'Di chuyển',health:'Sức khỏe',nature:'Thiên nhiên',social:'Kết nối',smart:'Smart',breath:'Mệt',strength:'Sức'};
+    const visible=['happiness','safety','comfort','strength','mobility','health','nature','social','smart','breath'];
+    $('scoreBars').innerHTML=visible.map(k=>{
+      const label=state.lang==='vi'?vi[k]:names[k]; const value=clamp(Math.round(state.scores[k]),0,100); const cls=k==='breath'?'warn':'cool';
+      return `<div class="scoreRow"><div>${label}</div><div class="bar"><div class="fill ${cls}" style="width:${value}%"></div></div><div>${value}%</div></div>`;
+    }).join('');
+    showMood();
+  }
+
+  function showMood(){
+    const s=state.scores; let face='•‿•', text=t('moodNeutral');
+    $('player').classList.remove('tired');
+    if(s.breath>58 || s.strength<38){ face='–﹏–'; text=t('moodTired'); $('player').classList.add('tired'); }
+    else if(s.safety<45 && (state.inspected.bath || state.inspected.night)){ face='•︵•'; text=t('moodWorried'); }
+    else if(state.installed.length>=5){ face='≧◡≦'; text=t('moodVeryHappy'); }
+    else if(s.safety>=60){ face='•ᴗ•'; text=t('moodConfident'); }
+    else if(s.happiness>=48 || s.comfort>=55){ face='^‿^'; text=t('moodHappy'); }
+    $('face').textContent=face; $('moodText').textContent=text;
+  }
+
+  function renderKit(){
+    $('budgetText').textContent = state.shopConfirmed ? `${t('selectFromKit')} ${state.selected.length}/${fixedBudget}` : t('noKit');
+    if(!state.selected.length){ $('kitGrid').innerHTML=`<div class="hintBox">${t('kitEmpty')}</div>`; return; }
+    $('kitGrid').innerHTML=state.selected.map(id=>{
+      const u=upgradeMap[id]; const inst=state.installed.includes(id); const active=state.activeUpgrade===id;
+      return `<button class="kitItem ${active?'selected':''} ${inst?'installed':''}" data-kit="${id}">${upgradeVisualHTML(u,'kit')}<span class="kitName">${localName(u)}</span><span class="kitSub">${u.category}</span><span class="miniTag">${inst?t('installed'):roomName(u.zone)}</span></button>`;
+    }).join('');
+    qs('[data-kit]').forEach(btn=>btn.onclick=()=>selectKit(btn.dataset.kit));
+  }
+
+  function renderShop(){
+    $('selectedCount').textContent=`${state.selected.length}/${fixedBudget}`;
+    $('shopGrid').innerHTML=upgrades.map((u,i)=>{
+      const active=state.selected.includes(u.id);
+      return `<button class="shopCard ${active?'active':''}" data-shop="${u.id}">
+        <div class="countBadge">✓</div>${upgradeVisualHTML(u,'shop')}<h3>${localName(u)}</h3><p>${u.category}<br>${roomName(u.zone)}</p><span class="category">${u.zone}</span>
+      </button>`;
+    }).join('');
+    qs('[data-shop]').forEach(card=>card.onclick=()=>toggleShop(card.dataset.shop));
+  }
+
+  function renderPriorityOptions(){
+    const opts=i18n[state.lang].priorityOptions;
+    $('priorityGrid').innerHTML=opts.map(o=>`<button class="priorityOption ${state.priorityAnswer===o?'active':''}" data-priority="${escapeHtml(o)}">${o}</button>`).join('');
+    qs('[data-priority]').forEach(btn=>btn.onclick=()=>{
+      state.priorityAnswer=btn.dataset.priority; state.missions.priority=true; $('priorityContinue').disabled=false; renderPriorityOptions(); renderMissions(); log('survey','priority_tradeoff',state.priorityAnswer); 
+    });
+  }
+  function escapeHtml(s){ return String(s).replace(/[&<>"']/g, m=>({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[m])); }
+
+  function roomName(zone){
+    const map={stairs:t('stairs'),entrance:t('entrance'),bathroom:t('bathroom'),kitchen:t('kitchen'),bedroom:t('bedroom'),living:t('living'),care:t('care'),balcony:t('balcony')}; return map[zone]||zone;
+  }
+
+  function zoneSceneClass(zone){
+    return {entrance:'sceneWarm',stairs:'sceneWarm',living:'sceneWarm',kitchen:'sceneGreen',bathroom:'sceneCool',bedroom:'sceneViolet',care:'sceneGreen',balcony:'sceneGreen'}[zone] || 'sceneWarm';
+  }
+  function upgradeVisualHTML(u, kind='shop'){
+    const cls = kind==='kit' ? 'kitVisual' : 'shopVisual';
+    const zone = roomName(u.zone);
+    return `<div class="${cls} ${zoneSceneClass(u.zone)}"><div class="thumbLabel">${zone}</div><div class="thumbScene ${u.zone}"></div><div class="upgradeArt ${u.id}" aria-hidden="true"></div></div>`;
+  }
+  function nearestNPC(){
+    if(state.player.floor!==0 || currentZone()!=='outside') return null;
+    const px=state.player.x+230;
+    return state.npcs.find(n=>Math.abs(n.x-px)<42) || null;
+  }
+  function interactNPC(npc){
+    const key=npc.msg || 'npcMsg1';
+    adjustCondition({social:4,happiness:2,breath:-1}, '+ social');
+    showMsg('👋 '+t(key));
+    log('interaction','npc_greeting',t(key));
+    const el=$(npc.id); if(el){ el.classList.add('near'); setTimeout(()=>el.classList.remove('near'),1200); }
+    return true;
+  }
+  function updateNPCs(){
+    const near = nearestNPC();
+    state.npcs.forEach(n=>{
+      n.x += n.speed;
+      if(n.x>n.max) n.x = n.min;
+      const el=$(n.id); if(el){
+        el.style.transform=`translateX(${n.x}px)`;
+        el.classList.toggle('near', !!(near && near.id===n.id));
+      }
+    });
+  }
+
+  function toggleShop(id){
+    if(state.installed.length>0 && state.shopConfirmed){ showToast('Selection is already confirmed for this player.'); return; }
+    const idx=state.selected.indexOf(id);
+    if(idx>=0){ state.selected.splice(idx,1); log('upgrade','deselected','',upgradeMap[id],'deselected'); }
+    else{
+      if(state.selected.length>=fixedBudget){ showToast(t('selectedTooMany')); return; }
+      state.selected.push(id); log('upgrade','selected','',upgradeMap[id],'selected');
+    }
+    renderShop(); renderKit();
+  }
+
+  function confirmShop(){
+    if(state.selected.length<1){ showToast(t('chooseAtLeast')); return; }
+    state.shopConfirmed=true; $('shopOverlay').classList.remove('show'); renderKit();
+    log('phase','upgrade_installation_started',`selected=${state.selected.length}`);
+    showMsg('🧰 '+t('selectFromKit'));
+  }
+
+  function selectKit(id){
+    if(state.installed.includes(id)){ showToast(t('alreadyInstalled')); return; }
+    state.activeUpgrade = state.activeUpgrade===id ? null : id;
+    renderKit(); updateZoneGlow();
+    if(state.activeUpgrade){ const u=upgradeMap[state.activeUpgrade]; showToast(`${localName(u)} → ${roomName(u.zone)}`); }
+  }
+
+  function updateZoneGlow(){
+    const glow=$('zoneGlow');
+    if(!state.activeUpgrade){ glow.style.display='none'; return; }
+    const u=upgradeMap[state.activeUpgrade]; const b=u.installBox;
+    glow.style.left=b[0]+'px'; glow.style.top=b[1]+'px'; glow.style.width=b[2]+'px'; glow.style.height=b[3]+'px'; glow.style.display='block';
+  }
+
+  function installActive(force=false){
+    if(!state.activeUpgrade) return false;
+    const u=upgradeMap[state.activeUpgrade];
+    if(!force && currentZone()!==u.zone && !(u.zone==='stairs' && currentZone()==='landing')){ showToast(t('wrongZone')); return false; }
+    if(state.installed.includes(u.id)){ showToast(t('alreadyInstalled')); return false; }
+    state.installed.push(u.id); applyUpgradeVisual(u.id); applyScores(u.score); log('upgrade','installed',u.message ? t(u.message) : '',u,'installed');
+    showMsg(`${u.icon} <b>${localName(u)}</b> — ${t('installed')}.`, t(u.message || ''));
+    state.activeUpgrade=null; renderKit(); renderScores(); updateZoneGlow(); updateEndButton();
+    if(state.installed.length>=3) showToast(t('canEnd'));
+    return true;
+  }
+
+  function applyScores(score){
+    Object.entries(score||{}).forEach(([k,v])=>{ state.scores[k]=clamp((state.scores[k]||0)+v,0,100); });
+    if(state.scores.breath>0 && (score.mobility || score.comfort)) state.scores.breath=clamp(state.scores.breath-18,0,100);
+    if((score.mobility || score.comfort || score.nature) && state.scores.strength<100) state.scores.strength=clamp(state.scores.strength+8,0,100);
+  }
+
+  function applyUpgradeVisual(id){
+    switch(id){
+      case 'stair_lift': $('stairLiftRail').style.display='block'; $('stairLiftChair').style.display='block'; $('stairLiftRailTop').style.display='block'; $('stairLiftChairTop').style.display='block'; break;
+      case 'elevator': $('liftCabin').style.display='block'; $('liftCabinTop').style.display='block'; $('liftDoors').style.display='block'; break;
+      case 'sensor_door': $('doorSensor').style.display='block'; $('entryRamp').style.display='block'; $('entryStep').style.opacity=.15; $('frontDoor').classList.add('open'); break;
+      case 'nonslip_shower': $('showerFloor').classList.add('nonslip'); break;
+      case 'grab_bars': $('grabBars').style.display='block'; break;
+      case 'low_drawers': $('drawers').style.display='block'; $('upperShelf').style.opacity=.45; break;
+      case 'seated_counter': $('counter').classList.add('low'); $('stool').style.display='block'; break;
+      case 'night_lights': $('nightLights').style.display='block'; $('nightPath').classList.remove('dim'); break;
+      case 'easy_sofa': $('sofa').classList.add('easy'); break;
+      case 'tea_table': $('teaTable').style.display='block'; break;
+      case 'health_corner': $('careCabinet').style.display='block'; $('bp').style.display='block'; $('medicineTray').style.display='block'; break;
+      case 'balcony_garden': $('gardenPlus').style.display='block'; break;
+      case 'motion_sensors': $('sensors').style.display='block'; break;
+    }
+  }
+
+
+
+  function objectLabel(obj){ return obj?.name?.[state.lang] || obj?.name?.en || ''; }
+  function nearestInteractable(){
+    const x=state.player.x+24, f=state.player.floor;
+    const candidates=interactables.filter(o=>o.floor===f && x>=o.min && x<=o.max);
+    return candidates.sort((a,b)=>Math.abs(((a.min+a.max)/2)-x)-Math.abs(((b.min+b.max)/2)-x))[0] || null;
+  }
+  function roomEl(zone){ return document.querySelector(`.room[data-zone="${zone}"]`); }
+  function pulseRoom(zone){ const el=roomEl(zone); if(!el) return; el.classList.remove('flash'); void el.offsetWidth; el.classList.add('flash'); }
+  function actorEffect(cls){ const p=$('player'); p.classList.remove('reach','bend','slip','sit'); void p.offsetWidth; p.classList.add(cls); setTimeout(()=>p.classList.remove(cls),650); }
+  function floatingEffect(text, good=false){
+    const el=document.createElement('div'); el.className='effectText'; el.textContent=text; el.style.left=(state.player.x+24)+'px'; el.style.top=(floorY[state.player.floor]-18)+'px';
+    if(good) el.style.color='#12624f'; $('house')?.appendChild?.(el) || document.querySelector('.house').appendChild(el); setTimeout(()=>el.remove(),1400);
+  }
+  function adjustCondition(delta={}, label=''){
+    Object.entries(delta).forEach(([k,v])=>{ state.scores[k]=clamp((state.scores[k]||0)+v,0,100); });
+    renderScores();
+    if(label) floatingEffect(label, !label.startsWith('-'));
+  }
+  function markMission(key, interaction, msg){
+    if(key && !state.missions[key]) state.missions[key]=true;
+    if(key && state.inspected[key]!==undefined) state.inspected[key]++;
+    log(key?'mission':'interaction', interaction, msg); renderMissions(); maybeOpenPriority();
+  }
+  function showNightDim(){ $('world').classList.add('dimMoment'); setTimeout(()=>$('world').classList.remove('dimMoment'),950); }
+
+  function interactObject(obj){
+    const installed=id=>state.installed.includes(id);
+    const loss=(n)=>`-${n} ${t('energyLoss')}`;
+    switch(obj.id){
+      case 'front_door':
+        state.inspected.entrance++; if(!state.missions.enter) state.missions.enter=true; renderMissions();
+        if(installed('sensor_door')) showMsg('🚪 '+t('entryUpgradedMsg'));
+        else showMsg('🚪 '+t('doorMsg'), t('entryStepMsg'));
+        log('interaction','front_door',installed('sensor_door')?t('doorMsg'):t('entryStepMsg')); pulseRoom('entrance'); return true;
+      case 'shoe_cabinet':
+        state.shoeOpen=!state.shoeOpen; $('shoeCabinet').classList.toggle('open',state.shoeOpen); actorEffect('bend'); adjustCondition({strength:-4,breath:2}, loss(4)); showMsg('👞 '+t('shoeMsg')); log('interaction','shoe_cabinet',t('shoeMsg')); pulseRoom('entrance'); return true;
+      case 'entry_mirror':
+        adjustCondition({happiness:1}, '+ mood'); showMsg('🪞 '+t('mirrorMsg')); log('interaction','entry_mirror',t('mirrorMsg')); pulseRoom('entrance'); return true;
+      case 'coat_rack':
+        actorEffect('reach'); adjustCondition({strength:-3,breath:2}, loss(3)); showMsg('🧥 '+t('coatMsg')); log('interaction','coat_rack',t('coatMsg')); pulseRoom('entrance'); return true;
+      case 'sofa':
+        if(installed('easy_sofa')){ actorEffect('sit'); adjustCondition({comfort:1,strength:3,breath:-3}, `+3 ${t('energyGain')}`); showMsg('🛋️ '+t('sofaGoodMsg')); log('interaction','easy_sofa',t('sofaGoodMsg')); }
+        else { actorEffect('sit'); adjustCondition({strength:-8,breath:5,comfort:-1}, loss(8)); showMsg('🛋️ '+t('sofaLowMsg')); log('interaction','low_sofa',t('sofaLowMsg')); }
+        pulseRoom('living'); return true;
+      case 'media_cabinet':
+        state.mediaOpen=!state.mediaOpen; $('mediaCabinet').classList.toggle('open',state.mediaOpen); showMsg('📺 '+t('mediaMsg')); log('interaction','media_cabinet',t('mediaMsg')); pulseRoom('living'); return true;
+      case 'bookshelf':
+        showMsg('📚 '+t('bookshelfMsg')); adjustCondition({comfort:1}, '+ comfort'); log('interaction','bookshelf',t('bookshelfMsg')); pulseRoom('living'); return true;
+      case 'high_shelf':
+        if(installed('low_drawers') || installed('seated_counter')){ if(installed('low_drawers')){state.drawersOpen=!state.drawersOpen; $('drawers').classList.toggle('open',state.drawersOpen);} showMsg('✅ '+t('kitchenGoodMsg')); markMission('kitchen','kitchen_storage_after_upgrade',t('kitchenGoodMsg')); }
+        else { actorEffect('reach'); adjustCondition({strength:-6,breath:4,comfort:-1}, loss(6)); showMsg('🫙 '+t('shelfReachMsg'), t('kitchenMsg')); markMission('kitchen','pain_point_high_shelf',t('shelfReachMsg')); }
+        pulseRoom('kitchen'); return true;
+      case 'base_cabinet':
+        if(installed('low_drawers')){ state.drawersOpen=!state.drawersOpen; $('drawers').classList.toggle('open',state.drawersOpen); showMsg('🗄️ '+t('kitchenGoodMsg')); markMission('kitchen','pull_out_drawers',t('kitchenGoodMsg')); }
+        else { actorEffect('bend'); adjustCondition({strength:-7,breath:5,comfort:-1}, loss(7)); showMsg('🗄️ '+t('baseCabinetMsg'), t('kitchenMsg')); markMission('kitchen','pain_point_deep_cabinet',t('baseCabinetMsg')); }
+        pulseRoom('kitchen'); return true;
+      case 'fridge':
+        actorEffect('reach'); adjustCondition({strength:-2,breath:1}, loss(2)); showMsg('🧊 '+t('fridgeMsg')); log('interaction','fridge',t('fridgeMsg')); pulseRoom('kitchen'); return true;
+      case 'stove':
+        adjustCondition({strength:-4,breath:3}, loss(4)); showMsg('🍳 '+t('stoveMsg')); log('interaction','stove',t('stoveMsg')); pulseRoom('kitchen'); return true;
+      case 'shower':
+        if(installed('nonslip_shower') || installed('grab_bars')){ adjustCondition({safety:1,breath:-2}, '+ safety'); showMsg('✅ '+t('bathGoodMsg')); markMission('bath','bathroom_after_upgrade',t('bathGoodMsg')); }
+        else { actorEffect('slip'); adjustCondition({strength:-5,breath:4,safety:-1}, loss(5)); showMsg('💦 '+t('bathMsg')); markMission('bath','pain_point_slippery_shower',t('bathMsg')); }
+        pulseRoom('bathroom'); return true;
+      case 'sink_toilet':
+        if(installed('grab_bars')) showMsg('🟧 '+t('bathGoodMsg')); else showMsg('🚽 '+t('sinkMsg'));
+        log('interaction','sink_toilet',installed('grab_bars')?t('bathGoodMsg'):t('sinkMsg')); pulseRoom('bathroom'); return true;
+      case 'bath_mirror':
+        showMsg('🪞 '+t('bathMirrorMsg')); log('interaction','bathroom_mirror',t('bathMirrorMsg')); pulseRoom('bathroom'); return true;
+      case 'bed_night':
+        if(installed('night_lights')){ showMsg('💡 '+t('nightGoodMsg')); markMission('night','night_route_after_upgrade',t('nightGoodMsg')); }
+        else { showNightDim(); adjustCondition({safety:-1,breath:3}, '- clarity'); showMsg('🌙 '+t('nightMsg'), t('lampMsg')); markMission('night','pain_point_dim_night_route',t('nightMsg')); }
+        pulseRoom('bedroom'); return true;
+      case 'wardrobe':
+        state.wardrobeOpen=!state.wardrobeOpen; $('wardrobe').classList.toggle('open',state.wardrobeOpen); actorEffect('reach'); adjustCondition({strength:-5,breath:3}, loss(5)); showMsg('👕 '+t('wardrobeMsg')); log('interaction','wardrobe',t('wardrobeMsg')); pulseRoom('bedroom'); return true;
+      case 'bed':
+        adjustCondition({comfort:1,breath:-1}, '+ comfort'); showMsg('🛏️ '+t('bedMsg')); log('interaction','bed',t('bedMsg')); pulseRoom('bedroom'); return true;
+      case 'care_desk':
+        if(installed('health_corner')){ adjustCondition({health:1,strength:2}, '+ health'); showMsg('🩺 '+t('careMsg')); log('interaction','health_corner',t('careMsg')); }
+        else { showMsg('📝 '+t('careBaseMsg')); log('interaction','empty_care_nook',t('careBaseMsg')); }
+        pulseRoom('care'); return true;
+      case 'care_device':
+        if(installed('motion_sensors')){ showMsg('📡 '+t('sensorMsg')); log('interaction','motion_sensors',t('sensorMsg')); }
+        else if(installed('health_corner')){ showMsg('🩺 '+t('careMsg')); log('interaction','health_device',t('careMsg')); }
+        else { showMsg('📝 '+t('careBaseMsg')); log('interaction','future_care_device',t('careBaseMsg')); }
+        pulseRoom('care'); return true;
+      case 'care_calendar':
+        showMsg('📅 '+t('calendarMsg')); adjustCondition({health:1}, '+ routine'); log('interaction','care_calendar',t('calendarMsg')); pulseRoom('care'); return true;
+      case 'balcony_plants':
+        if(installed('balcony_garden')){ adjustCondition({strength:8,breath:-6,happiness:1}, `+8 ${t('energyGain')}`); showMsg('🌿 '+t('gardenMsg')); log('interaction','healing_balcony',t('gardenMsg')); }
+        else { adjustCondition({strength:3,breath:-2}, `+3 ${t('energyGain')}`); showMsg('🌤️ '+t('balconyBaseMsg')); log('interaction','basic_balcony',t('balconyBaseMsg')); }
+        pulseRoom('balcony'); return true;
+      case 'watering_can':
+        adjustCondition({strength:2,happiness:1}, `+2 ${t('energyGain')}`); showMsg('💧 '+t('wateringMsg')); log('interaction','watering_can',t('wateringMsg')); pulseRoom('balcony'); return true;
+    }
+    return false;
+  }
+
+  function allPainInspected(){ return state.missions.stair && state.missions.bath && state.missions.kitchen && state.missions.night; }
+  function maybeOpenPriority(){
+    if(allPainInspected() && !state.missions.priority && !$('priorityOverlay').classList.contains('show')){
+      $('priorityOverlay').classList.add('show'); renderPriorityOptions(); log('phase','priority_question_opened','');
+    }
+  }
+
+  function currentZone(){
+    const x=state.player.x+24, f=state.player.floor;
+    for(const [k,r] of Object.entries(rooms)){ if(r.floor===f && x>=r.min && x<r.max) return k; }
+    return f===1 ? 'landing' : 'outside';
+  }
+
+  function inspect(){
+    if(state.activeUpgrade && installActive()) return;
+    const npc=nearestNPC();
+    if(npc && interactNPC(npc)) return;
+    const obj=nearestInteractable();
+    if(obj && interactObject(obj)) return;
+    const zone=currentZone();
+    if(zone==='entrance'){
+      state.inspected.entrance++; if(!state.missions.enter){state.missions.enter=true; log('mission','enter_regular_home',t('doorMsg')); renderMissions();}
+      showMsg('🚪 '+t('doorMsg')); return;
+    }
+    if(zone==='stairs' || zone==='landing'){
+      if(state.installed.includes('elevator')){ useElevator(); return; }
+      if(state.installed.includes('stair_lift')){ useStairLift(); return; }
+      state.missions.stair=true; state.inspected.stair++; state.scores.breath=clamp(state.scores.breath+16,0,100); state.scores.strength=clamp(state.scores.strength-8,0,100); floatingEffect('-8 '+t('energyLoss')); state.scores.happiness=clamp(state.scores.happiness-2,0,100);
+      log('mission','pain_point_stairs',t('stairMsg')); renderMissions(); renderScores(); showMsg('🫁 '+t('stairMsg')); maybeOpenPriority(); return;
+    }
+    if(zone==='bathroom'){
+      state.missions.bath=true; state.inspected.bath++; const good=state.installed.includes('nonslip_shower')||state.installed.includes('grab_bars');
+      log('mission','pain_point_bathroom',good?t('bathGoodMsg'):t('bathMsg')); renderMissions(); showMsg((good?'✅ ':'💦 ')+(good?t('bathGoodMsg'):t('bathMsg'))); maybeOpenPriority(); return;
+    }
+    if(zone==='kitchen'){
+      state.missions.kitchen=true; state.inspected.kitchen++; const good=state.installed.includes('low_drawers')||state.installed.includes('seated_counter');
+      if(state.installed.includes('low_drawers')){ state.drawersOpen=!state.drawersOpen; $('drawers').classList.toggle('open',state.drawersOpen); }
+      log('mission','pain_point_kitchen',good?t('kitchenGoodMsg'):t('kitchenMsg')); renderMissions(); showMsg((good?'✅ ':'🗄️ ')+(good?t('kitchenGoodMsg'):t('kitchenMsg'))); maybeOpenPriority(); return;
+    }
+    if(zone==='bedroom'){
+      state.missions.night=true; state.inspected.night++; const good=state.installed.includes('night_lights');
+      log('mission','pain_point_night_route',good?t('nightGoodMsg'):t('nightMsg')); renderMissions(); showMsg((good?'💡 ':'🌙 ')+(good?t('nightGoodMsg'):t('nightMsg'))); maybeOpenPriority(); return;
+    }
+    if(zone==='living'){
+      if(state.installed.includes('easy_sofa')) showMsg('🛋️ '+t('sofaGoodMsg'));
+      else if(state.installed.includes('tea_table')) showMsg('🍵 '+t('teaMsg'));
+      else showMsg('🛋️ '+t('sofaMsg'));
+      log('interaction','living_room',state.installed.includes('easy_sofa')?t('sofaGoodMsg'):t('sofaMsg')); return;
+    }
+    if(zone==='care'){
+      if(state.installed.includes('motion_sensors')) showMsg('📡 '+t('sensorMsg'));
+      else if(state.installed.includes('health_corner')) showMsg('🩺 '+t('careMsg'));
+      else showMsg('📝 This can become a small care nook later.');
+      log('interaction','care_nook','care interaction'); return;
+    }
+    if(zone==='balcony'){
+      showMsg('🌿 '+(state.installed.includes('balcony_garden')?t('gardenMsg'):'This balcony could become a healing garden with shade, plants and a seat.'));
+      log('interaction','balcony','balcony interaction'); return;
+    }
+    showToast('Move close to an object or room, then press E.');
+  }
+
+  function useElevator(){
+    state.player.floor = state.player.floor===0 ? 1 : 0; state.scores.breath=clamp(state.scores.breath-12,0,100); renderScores();
+    $('liftCabin').classList.toggle('up', state.player.floor===1); $('liftCabinTop').classList.toggle('up', state.player.floor===1);
+    state.player.x=850; updatePlayer(); showMsg('🛗 '+t('elevatorMsg')); log('interaction','use_elevator',t('elevatorMsg'));
+  }
+  function useStairLift(){
+    state.player.floor = state.player.floor===0 ? 1 : 0; state.scores.breath=clamp(state.scores.breath-6,0,100); renderScores(); state.player.x=804; updatePlayer();
+    const chair= state.player.floor===1 ? $('stairLiftChairTop') : $('stairLiftChair'); chair.style.transform='translateY(-8px)'; setTimeout(()=>chair.style.transform='',350);
+    showMsg('🪑 '+t('stairLiftMsg')); log('interaction','use_stair_lift',t('stairLiftMsg'));
+  }
+
+  function moveFloor(dir){
+    const zone=currentZone(); if(!(zone==='stairs'||zone==='landing')) return;
+    if(state.installed.includes('elevator')){ useElevator(); return; }
+    if(state.installed.includes('stair_lift')){ useStairLift(); return; }
+    if(dir>0 && state.player.floor===0){ state.player.floor=1; state.player.x=802; state.scores.breath=clamp(state.scores.breath+20,0,100); state.scores.strength=clamp(state.scores.strength-13,0,100); floatingEffect('-13 '+t('energyLoss')); }
+    else if(dir<0 && state.player.floor===1){ state.player.floor=0; state.player.x=802; state.scores.breath=clamp(state.scores.breath+10,0,100); state.scores.strength=clamp(state.scores.strength-6,0,100); floatingEffect('-6 '+t('energyLoss')); }
+    else return;
+    state.missions.stair=true; state.inspected.stair++; log('mission','use_stairs',t('stairMsg')); renderMissions(); renderScores(); updatePlayer(); showMsg('🫁 '+t('stairMsg')); maybeOpenPriority();
+  }
+
+  function updatePlayer(){
+    const x=state.player.x; const y=floorY[state.player.floor] - state.player.vy;
+    $('player').style.transform=`translate3d(${x}px,${y}px,0) scaleX(${state.player.dir})`;
+    $('player').querySelector('.avatarHead').style.transform=`scaleX(${state.player.dir})`;
+    $('player').querySelector('.body').style.transform=`scaleX(${state.player.dir})`;
+    if(x>-26 && x<74 && state.player.floor===0){ $('frontDoor').classList.add('open'); if(!state.missions.enter && x>10){ state.missions.enter=true; state.inspected.entrance++; log('mission','enter_regular_home',t('doorMsg')); renderMissions(); showMsg('🚪 '+t('doorMsg')); } } else if(!state.installed.includes('sensor_door')) { $('frontDoor').classList.remove('open'); }
+    const obj=nearestInteractable(); const npc=nearestNPC(); const tip=$('objectTip');
+    updateHotspotHints(obj);
+    if(npc){ tip.textContent=(state.lang==='vi'?'E: nói chuyện':'E: talk'); tip.style.left=(x+24)+'px'; tip.style.top=(y-8)+'px'; tip.style.display='block'; }
+    else if(obj){ tip.textContent=(state.lang==='vi'?'E: ':'E: ')+objectLabel(obj); tip.style.left=(x+24)+'px'; tip.style.top=(y-8)+'px'; tip.style.display='block'; } else { tip.style.display='none'; }
+    const zone=currentZone(); if(zone!==state.lastZone){ state.lastZone=zone; }
+    const vp=$('viewport'); const stageLeft=x+56- (vp.clientWidth/2); vp.scrollLeft = clamp(stageLeft,0,1380-vp.clientWidth+80);
+  }
+
+  function jump(){ if(state.player.jumping) return; state.player.jumping=true; let start=null; function anim(ts){ if(!start) start=ts; const p=Math.min(1,(ts-start)/420); state.player.vy=Math.sin(p*Math.PI)*42; updatePlayer(); if(p<1) requestAnimationFrame(anim); else {state.player.vy=0; state.player.jumping=false; updatePlayer();} } requestAnimationFrame(anim); }
+
+  function gameLoop(){
+    if(state.started){
+      updateNPCs();
+      let dx=0; if(state.keys.left) dx-=3.2; if(state.keys.right) dx+=3.2;
+      if(dx!==0){ state.player.x=clamp(state.player.x+dx, floorRanges[state.player.floor][0], floorRanges[state.player.floor][1]); state.player.dir=dx>0?1:-1; $('player').classList.add('walking'); updatePlayer(); }
+      else $('player').classList.remove('walking');
+      if(state.keys.up && Date.now()>state.stairCooldown){ moveFloor(1); state.stairCooldown=Date.now()+550; }
+      if(state.keys.down && Date.now()>state.stairCooldown){ moveFloor(-1); state.stairCooldown=Date.now()+550; }
+    }
+    requestAnimationFrame(gameLoop);
+  }
+
+  function updateEndButton(){ $('endBtn').disabled=!(state.missions.priority && state.installed.length>=3); }
+
+  function openShop(){
+    if(!allPainInspected() && !state.shopConfirmed){ showToast(t('needMissions')); return; }
+    if(!state.missions.priority){ $('priorityOverlay').classList.add('show'); renderPriorityOptions(); return; }
+    renderShop(); $('shopOverlay').classList.add('show');
+  }
+
+  function openDashboard(){
+    $('sessionIdText').textContent=state.sessionId; renderDashboard(); $('dashboardOverlay').classList.add('show');
+  }
+  function renderDashboard(){
+    const chartKeys=['happiness','safety','comfort','strength','mobility','health','nature','social','smart','breath'];
+    const labels={happiness:'Happiness',safety:'Safety',comfort:'Comfort',strength:'Strength/Energy',mobility:'Mobility',health:'Health support',nature:'Nature/wellness',social:'Social',smart:'Smart support',breath:'Breath/fatigue'};
+    const labelsVi={happiness:'Hạnh phúc',safety:'An toàn',comfort:'Thoải mái',strength:'Sức/năng lượng',mobility:'Di chuyển',health:'Hỗ trợ sức khỏe',nature:'Thiên nhiên/wellness',social:'Kết nối',smart:'Hỗ trợ smart',breath:'Mệt/hơi thở'};
+    const lab=state.lang==='vi'?labelsVi:labels;
+    const chartHTML=chartKeys.map(k=>`<div class="scoreRow"><div>${lab[k]}</div><div class="bar"><div class="fill ${k==='breath'?'warn':'cool'}" style="width:${clamp(state.scores[k],0,100)}%"></div></div><div>${Math.round(state.scores[k])}%</div></div>`).join('');
+    $('dashboardScores').innerHTML=chartHTML; $('endScores').innerHTML=chartHTML;
+    const selected=state.selected.map(id=>localName(upgradeMap[id])).join(', ') || '-'; const installed=state.installed.map(id=>localName(upgradeMap[id])).join(', ') || '-';
+    $('dashboardSummary').innerHTML=`<b>Avatar:</b> ${state.avatar}, <b>Age:</b> ${state.age}<br><b>Priority:</b> ${state.priorityAnswer || '-'}<br><b>Selected:</b> ${selected}<br><b>Installed:</b> ${installed}<br><b>Budget left:</b> ${fixedBudget-state.selected.length}`;
+    $('logTable').innerHTML=`<thead><tr><th>Time</th><th>Event</th><th>Interaction</th><th>Answer / Learning</th><th>Item</th></tr></thead><tbody>${state.logs.slice().reverse().map(r=>`<tr><td>${new Date(r.timestamp).toLocaleTimeString()}</td><td>${r.event_type}</td><td>${r.mission_or_interaction_type}</td><td>${escapeHtml(r.answer_or_learning)}</td><td>${escapeHtml(r.item_name)}</td></tr>`).join('')}</tbody>`;
+  }
+
+  function playerProfile(){
+    const s=state.scores; const ranking=[['Mobility',s.mobility],['Safety',s.safety],['Comfort',s.comfort],['Health Support',s.health],['Nature/Wellness',s.nature],['Social Connection',s.social],['Smart Support',s.smart],['Happiness',s.happiness]].sort((a,b)=>b[1]-a[1]);
+    const top=ranking[0][0];
+    const en={Mobility:'Future-proof Mover',Safety:'Safety-first Planner',Comfort:'Daily Ease Designer','Health Support':'Wellness-ready Planner','Nature/Wellness':'Healing Garden Lover','Social Connection':'Family Connection Builder','Smart Support':'Smart Independent Living Planner',Happiness:'Joyful Home Curator'};
+    const vi={Mobility:'Người ưu tiên di chuyển tương lai',Safety:'Người đặt an toàn lên trước',Comfort:'Người thiết kế sự dễ dàng hằng ngày','Health Support':'Người chuẩn bị chăm sóc sức khỏe','Nature/Wellness':'Người yêu không gian chữa lành','Social Connection':'Người xây kết nối gia đình','Smart Support':'Người thích sống độc lập có hỗ trợ smart',Happiness:'Người kiến tạo ngôi nhà vui vẻ'};
+    return {title:(state.lang==='vi'?vi:en)[top], top, ranking};
+  }
+
+  function showEnd(){
+    if(!(state.missions.priority && state.installed.length>=3)){ showToast(t('needThree')); return; }
+    state.endTime=nowISO(); log('end','completed','player ended game'); renderDashboard();
+    const p=playerProfile();
+    $('profileText').innerHTML=`<p><b>${p.title}</b></p><p>${state.lang==='vi'?'Ưu tiên cao nhất của bạn:':'Your strongest priority:'} <b>${p.top}</b>. ${state.lang==='vi'?'Sự lựa chọn của bạn cho thấy ngôi nhà 70+ nên hỗ trợ lối sống độc lập, an toàn và có ý nghĩa.':'Your choices suggest a 70+ home should support independence, safety and a meaningful daily routine.'}</p>`;
+    $('endInstalled').innerHTML=state.installed.map(id=>{const u=upgradeMap[id]; return `<div class="missionItem done"><div class="tick">✓</div><div>${u.icon} <b>${localName(u)}</b><br><small>${u.category} · ${roomName(u.zone)}</small></div></div>`}).join('') || '-';
+    $('endOverlay').classList.add('show');
+  }
+
+  function exportCSV(){
+    const cols=['session_id','timestamp','event_type','mission_or_interaction_type','answer_or_learning','item_id','item_name','item_category','item_zone','selected_or_installed','happiness_score','safety_score','comfort_score','mobility_score','health_score','nature_score','social_score','smart_score','breath_fatigue','strength_score','fixed_budget','budget_left','installed_count'];
+    const rows=[cols.join(',')].concat(state.logs.map(r=>cols.map(c=>csv(r[c])).join(',')));
+    const blob=new Blob([rows.join('\n')],{type:'text/csv;charset=utf-8'}); const url=URL.createObjectURL(blob); const a=document.createElement('a');
+    a.href=url; a.download=`life_plus_70_session_${state.sessionId}.csv`; document.body.appendChild(a); a.click(); a.remove(); setTimeout(()=>URL.revokeObjectURL(url),1000);
+  }
+  function csv(v){ const s=String(v??''); return '"'+s.replace(/"/g,'""')+'"'; }
+
+  function resetGame(){ localStorage.removeItem('lifePlusLastSession'); location.reload(); }
+
+  function startGame(){
+    state.started=true; state.startTime=nowISO(); state.age=Number($('ageInput').value || 35); $('startOverlay').classList.remove('show');
+    log('start','session_started',`avatar=${state.avatar}; age=${state.age}`); showMsg(state.lang==='vi'?'👋 Hãy bắt đầu từ ngoài nhà, đi tới cửa chính. Chấm E màu vàng là đồ có thể tương tác; nhãn trên nhân vật cho biết đúng vật đang chọn.':'👋 Start outside the house and walk toward the front door. Yellow E dots show interactive items; the label above your character confirms the exact item.'); renderMissions(); renderScores(); renderKit(); updatePlayer();
+  }
+
+  function setupEvents(){
+    $('startBtn').onclick=startGame; $('shopBtn').onclick=openShop; $('dashboardBtn').onclick=openDashboard; $('endBtn').onclick=showEnd; $('helpBtn').onclick=()=>$('helpOverlay').classList.add('show');
+    $('closeHelp').onclick=()=>$('helpOverlay').classList.remove('show'); $('closeShop').onclick=()=>$('shopOverlay').classList.remove('show'); $('confirmShop').onclick=confirmShop;
+    $('priorityContinue').onclick=()=>{ if(!state.priorityAnswer){showToast(t('chooseFirst')); return;} $('priorityOverlay').classList.remove('show'); renderShop(); $('shopOverlay').classList.add('show'); };
+    $('closeDashboard').onclick=()=>$('dashboardOverlay').classList.remove('show'); $('exportCsv').onclick=exportCSV; $('exportCsvEnd').onclick=exportCSV; $('resetBtn').onclick=resetGame; $('newPlayerEnd').onclick=resetGame; $('closeEnd').onclick=()=>$('endOverlay').classList.remove('show');
+    $('langEn').onclick=()=>setLang('en'); $('langVi').onclick=()=>setLang('vi');
+    qs('.avatarChoice').forEach(btn=>btn.onclick=()=>{ state.avatar=btn.dataset.avatar; qs('.avatarChoice').forEach(b=>b.classList.remove('active')); btn.classList.add('active'); $('avatarBody').className='body avatar'+(state.avatar==='A'?'':state.avatar); });
+    document.addEventListener('keydown', e=>{
+      if(['ArrowLeft','ArrowRight','ArrowUp','ArrowDown',' '].includes(e.key)) e.preventDefault();
+      if(e.key==='a'||e.key==='A'||e.key==='ArrowLeft') state.keys.left=true;
+      if(e.key==='d'||e.key==='D'||e.key==='ArrowRight') state.keys.right=true;
+      if(e.key==='w'||e.key==='W'||e.key==='ArrowUp') state.keys.up=true;
+      if(e.key==='s'||e.key==='S'||e.key==='ArrowDown') state.keys.down=true;
+      if(e.key==='e'||e.key==='E') inspect(); if(e.key===' ') jump();
+    }, {passive:false});
+    document.addEventListener('keyup', e=>{ if(e.key==='a'||e.key==='A'||e.key==='ArrowLeft') state.keys.left=false; if(e.key==='d'||e.key==='D'||e.key==='ArrowRight') state.keys.right=false; if(e.key==='w'||e.key==='W'||e.key==='ArrowUp') state.keys.up=false; if(e.key==='s'||e.key==='S'||e.key==='ArrowDown') state.keys.down=false; });
+    $('zoneGlow').onclick=()=>installActive(true);
+    qs('[data-hold]').forEach(btn=>{
+      const dir=btn.dataset.hold; const on=()=>{state.keys[dir]=true}; const off=()=>{state.keys[dir]=false};
+      btn.addEventListener('pointerdown', e=>{e.preventDefault(); btn.setPointerCapture(e.pointerId); on();}); btn.addEventListener('pointerup', off); btn.addEventListener('pointercancel', off); btn.addEventListener('pointerleave', off);
+    });
+    qs('[data-tap]').forEach(btn=>btn.addEventListener('pointerdown', e=>{e.preventDefault(); const a=btn.dataset.tap; if(a==='up') moveFloor(1); if(a==='down') moveFloor(-1); if(a==='interact') inspect(); if(a==='jump') jump(); }));
+    window.addEventListener('resize', updatePlayer);
+  }
+
+  function init(){
+    renderMissions(); renderScores(); renderKit(); renderShop(); renderPriorityOptions(); setupEvents(); createHotspotHints(); state.npcs.forEach(n=>{const el=$(n.id); if(el) el.style.transform=`translateX(${n.x}px)`;}); gameLoop(); updatePlayer(); updateEndButton();
+    $('avatarBody').className='body';
+  }
+  init();
+})();
+</script>
+</body>
+</html>
